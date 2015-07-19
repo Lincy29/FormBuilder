@@ -29,7 +29,7 @@ class Department extends AppModel {
  *
  * @var array
  */
-        public $hasMany = ['Degree','Staff','UserRole','SupportTicketSystem.Category','Form','Category','Student'];
+        public $hasMany = ['Degree','Staff','UserRole','SupportTicketSystem.Category','Category','Student'];
  
 /**
  * getListByInstituion method

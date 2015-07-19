@@ -110,6 +110,7 @@ CakeLog::config('error', array(
 //CakePlugin::load('TrainingAndPlacement',array('bootstrap' => false,'routes' => false));
 //CakePlugin::load('FeedbackSystem',array('bootstrap' => false,'routes' => false));
 CakePlugin::load('Tools',array('bootstrap' => true,'routes' => false));
+CakePlugin::load('FormBuilder',array('bootstrap' => false,'routes' => false));
 CakePlugin::load('DebugKit');
 //CakePlugin::load('HighCharts');
 //CakePlugin::load('CakePdf', array('bootstrap' => true, 'routes' => true));
@@ -140,4 +141,5 @@ Configure::write('fbadmin',6);
 Configure::write('deptcoordinator',7);
 Configure::write('stcoordinator',8);
 Configure::write('user',9);
-Configure::write('company',10);
+//Configure::write('company',10);
+Configure::write('formcoordinator',11);

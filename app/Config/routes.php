@@ -26,7 +26,8 @@
  */
  
 
-	Router::connect('/', array('controller' => 'users', 'action' => 'login'));
+
+Router::connect('/', array('controller' => 'users', 'action' => 'login'));
 
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
@@ -37,7 +38,11 @@ Router::connect('/create', array('controller' => 'forms', 'action'=> 'create'));
 Router::setExtensions(array('json', 'xml','pdf'));
 Router::parseExtensions('json', 'xml','pdf');
 
-
+[
+'plugin' => 'FormBuilder',
+'controller' => 'FormsController',
+'action' => 'add',
+] ;
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

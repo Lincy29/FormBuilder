@@ -1,29 +1,30 @@
+<div class="table-responsive">
 <div class="students index">
 	<h2><?php echo __('Students'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 			
 			<th><?php echo $this->Paginator->sort('id'); ?></th>			
 			<th><?php echo $this->Paginator->sort('firstname'); ?></th>
 			<th><?php echo $this->Paginator->sort('lastname'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>			
-			<th><?php echo $this->Paginator->sort('institution_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('department_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('degree_id'); ?></th>
+			
+			<th><?php echo $this->Paginator->sort('email'); ?></th>
+			
 
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-    <?php debug($students); exit; ?>
 	<?php foreach ($students as $student): ?>
 	<tr>
 		<td><?php echo h($student['Student']['id']); ?>&nbsp;</td>
 		<td><?php echo h($student['Student']['firstname']); ?>&nbsp;</td>
-		<td><?php echo h($staff['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($staff['User']['email']); ?>&nbsp;</td>
-		
+		<td><?php echo h($student['Student']['lastname']); ?>&nbsp;</td>
+		<td><?php echo h($student['User']['username']); ?>&nbsp;</td>
+		<td><?php echo h($student['User']['email']); ?>&nbsp;</td>
 		
 		<td class="actions">
+			<?php echo $this->Html->link(__('', true), array('action' => 'index', $student['Student']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
+
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $student['Student']['id'])); ?>
 			
 		</td>

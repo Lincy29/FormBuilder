@@ -19,15 +19,14 @@
  if (!Auth::hasRoles(array('company'))) {
   echo "<div class='col-md-3'>";
   echo $this->Html->link(
-    $this->Html->image('FormLogo.png', ['alt' => 'FormLogo','height'=>'179 px','width'=>'215 px']),
+    $this->Html->image('FormLogo.png', ['alt' => 'CREATE_FORM']),
     [
-        'plugin' => 'create_form',
-        'controller' => 'pages',
-        'action' => 'dashboard',
+       // 'plugin' => 'support_ticket_system',
+        'controller' => 'forms',
+        'action' => 'add',
     ],['escape' => false]
 ); 
-  echo "<br>"."<h3>"."CREATE FORM"."</h3>";
-
+  echo "<br>"."<h5>"."CREATE FORM"."</h5>";
   echo "</div>";
 }?>
 
@@ -37,14 +36,14 @@
     echo "<div class='col-md-3'>";
     
     echo $this->Html->link(
-    $this->Html->image('viewresponse.png', ['alt' => 'viewresponse','height'=>'179 px','width'=>'215 px']),
+    $this->Html->image('viewresponse.png', ['alt' => 'viewresponse']),
     [
-        'plugin' => 'view_response',
+        'plugin' => 'feedback_system',
         'controller' => 'pages',
         'action' => 'dashboard',
     ],['escape' => false]
 );
-    echo "<br>"."<h3>"."VIEW RESPONSES"."</h3>";
+    echo "<br>"."<h5>"."VIEW RESPONSE"."</h5>";
     echo "</div>";
 }?>
 
