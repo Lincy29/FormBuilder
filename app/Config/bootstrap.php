@@ -141,5 +141,5 @@ Configure::write('fbadmin',6);
 Configure::write('deptcoordinator',7);
 Configure::write('stcoordinator',8);
 Configure::write('user',9);
-//Configure::write('company',10);
+Configure::write('formadmin',10);
 Configure::write('formcoordinator',11);

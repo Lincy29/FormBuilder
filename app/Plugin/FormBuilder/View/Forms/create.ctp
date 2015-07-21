@@ -11,7 +11,14 @@
     <script type="text/javascript">
      $(document).ready(function(){
           $("#fetchcode").click(function(){
-            var code=$("#render").val();                
+
+          	$("#render :input").each(function(){
+          		var input = $(this);
+          	});
+          	console.log(input.length);
+           
+   /* things we tried*/
+          /*  var code=$("#render").val();                
             $("#codetext").val(code);
            
    /* Array.prototype.slice.call(document.getElementById("textinput").attributes).forEach(function(item) {
@@ -21,7 +28,7 @@
    
 });*/
     // $("#type1").val(attrs);
-    var counter=-24;
+    /*var counter=-24;
        
  $("input").each(function() {
    var title = $("input").attr( "type" );
@@ -30,7 +37,7 @@
    counter++;
 });
 $("#type1").val(counter);
-
+*/
        });
      });
 
@@ -82,14 +89,6 @@ $("#type1").val(counter);
  
      </div>
      
-     <!--<div class="row clearfix">
-       <div class="col-md-12">
-         <hr>
-         By Adam Moore (<a href="http://twitter.com/minikomi" >@minikomi</a>).<br/>
-         Source on (<a href="https://github.com/minikomi/Bootstrap-Form-Builder" >Github</a>).
-       </div>
-     </div>
- 
-   </div> <!-- /container -->
+    
  
    <script data-main="/gnu/app/webroot/js/main-built.js" src="/gnu/app/webroot/js/lib/require.js?v=3" ></script>

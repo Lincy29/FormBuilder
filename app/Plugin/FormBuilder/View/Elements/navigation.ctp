@@ -114,7 +114,7 @@
         <ul class="dropdown-menu megamenu row">
           <li class="col-sm-3">
             <ul>
-              <?php if(Auth::hasRoles(['developer','superadmin'])) {?>
+              <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
              <li class="dropdown-header">Manage Category</li>
                   <li>
@@ -130,7 +130,7 @@
                       'action' => 'index_category']); ?>
                 </li>
                 <?php } ?>
-                <?php if(Auth::hasRoles(['admin'])) {?>
+                <?php if(Auth::hasRoles(['formadmin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
              <li class="dropdown-header">Manage Category</li>
                   <li>
@@ -168,14 +168,14 @@
         </li>
         <li>
           
-           <?php if(Auth::hasRoles(['admin'])) {?>
+           <?php if(Auth::hasRoles(['formadmin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
             <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
                                                         'controller' => 'forms',
                                                         'action' => 'add_fadmin'));
             ?>
            <?php } ?>
-           <?php if(Auth::hasRoles(['developer','superadmin'])) {?>
+           <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
             <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
                                                         'controller' => 'forms',
@@ -216,7 +216,7 @@
           </ul>
         </li>
         <li class="dropdown menu-large">
-          <?php if(Auth::hasRoles(['developer'])) {?>
+          <?php if(Auth::hasRoles(['developer','superadmin'])) {?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Department<b class="caret"></b></a>
           <?php } ?> 
         <ul class="dropdown-menu megamenu row">

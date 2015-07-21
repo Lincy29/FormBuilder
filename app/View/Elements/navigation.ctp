@@ -83,6 +83,26 @@
               </li>
               <li class="divider"></li>
               <?php } ?>
+
+              <?php  if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
+              <li class="dropdown-header">Manage FormAdmin</li>
+                  <li>
+                    <?php echo $this->Html->link(__("New FormAdmin",true),[
+                    'plugin'=>false,
+                    'controller' => 'user_roles', 
+                    'action' => 'add_fadmin']); ?>
+                  </li>
+              <?php } ?>
+
+              <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
+              <li>
+                <?php echo $this->Html->link(__("View FormAdmins",true),[
+                'plugin'=>false,
+                'controller' => 'user_roles', 
+                'action' => 'index_fadmin']);?>
+              </li>
+              <li class="divider"></li>
+              <?php } ?>
               
               <?php  if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
               <li class="dropdown-header">Manage FormCoordinator</li>
@@ -114,7 +134,7 @@
         <ul class="dropdown-menu megamenu row">
           <li class="col-sm-3">
             <ul>
-              <?php if(Auth::hasRoles(['developer','superadmin'])) {?>
+              <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
              <li class="dropdown-header">Manage Category</li>
                   <li>
@@ -130,7 +150,7 @@
                       'action' => 'index_category']); ?>
                 </li>
                 <?php } ?>
-                <?php if(Auth::hasRoles(['admin'])) {?>
+                <?php if(Auth::hasRoles(['formadmin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
              <li class="dropdown-header">Manage Category</li>
                   <li>
@@ -168,14 +188,14 @@
         </li>
         <li>
           
-           <?php if(Auth::hasRoles(['admin'])) {?>
+           <?php if(Auth::hasRoles(['formadmin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
             <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
                                                         'controller' => 'forms',
                                                         'action' => 'add_fadmin'));
             ?>
            <?php } ?>
-           <?php if(Auth::hasRoles(['developer','superadmin'])) {?>
+           <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
             <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
                                                         'controller' => 'forms',

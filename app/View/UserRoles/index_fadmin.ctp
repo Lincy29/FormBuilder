@@ -1,7 +1,7 @@
 
 <div class="table-responsive">
 <div class="admins index">
-	<h2><?php echo __('Admins'); ?></h2>
+	<h2><?php echo __('Form Coordinators'); ?></h2>
 	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 
@@ -11,26 +11,26 @@
 			<th><?php echo $this->Paginator->sort('role_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($admins as $admin): ?>
+	<?php foreach ($formadmins as $formadmin): ?>
 	<tr>
 
 		<td>
-			<?php echo h($admin['Staff']['firstname']." ".$admin['Staff']['lastname']); ?>
+			<?php echo h($formadmin['Staff']['firstname']." ".$formadmin['Staff']['lastname']); ?>
 		</td>
 		<td>
-			<?php echo h($admin['Institution']['name']); ?>
+			<?php echo h($formadmin['Institution']['name']); ?>
 		</td>
 		<td>
-			<?php echo h($admin['Department']['name']); ?>
+			<?php echo h($formadmin['Department']['name']); ?>
 		</td>
 		<td>
-			<?php echo h($admin['Role']['alias']); ?>
+			<?php echo h($formadmin['Role']['alias']); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('', true), array('action' => 'view_admin', $admin['UserRole']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
+			<?php echo $this->Html->link(__('', true), array('action' => 'view_fcoord', $formadmin['UserRole']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
 			<?php 
-			if($admin['UserRole']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_admin', $admin['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $admin['UserRole']['id'])); 
+			if($formadmin['UserRole']['recstatus'] == 1){
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_admin_developer', $formadmin['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $formadmin['UserRole']['id'])); 
 			}
 		?>
 		

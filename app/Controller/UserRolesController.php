@@ -112,6 +112,18 @@ public function index_fcoord() {
   $this->set('formcoordinators', $this->Paginator->paginate());
 }
 
+public function index_fadmin() {
+  $this->loadModel('Setting');
+  $data = $this->Setting->find('first', array('recursive' => - 1));
+  $pagination_value = $data['Setting']['pagination_value'];
+  $this->Paginator->settings = array(
+    'limit' => $pagination_value,
+    'page' => 1,
+    'contain' => ['Staff','Institution','Department','Role'],
+    'conditions'=>['UserRole.role_id'=> Configure::read('formadmin')]);
+  $this->set('formadmins', $this->Paginator->paginate());
+}
+
 public function add_admin() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
       $this->UserRole->create();
@@ -157,6 +169,30 @@ public function add_fcoord() {
     $staffs = [];
     $this->set(compact('institutions', 'departments', 'staffs','roles'));
 }
+
+public function add_fadmin() {
+  if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
+      $this->UserRole->create();
+      $staff_id = $this->request->data['UserRole']['staff_id']; 
+      $data = $this->UserRole->User->find('first',['conditions'=>['User.staff_id'=>$staff_id]]);
+      $this->request->data['UserRole']['user_id'] = $data['User']['id'];
+      $this->request->data['UserRole']['role_id'] = Configure::read('formadmin');
+      if($this->UserRole->save($this->request->data)){
+            $this->Session->setFlash(__('The  Form Admin has been saved.'), 'alert', array(
+          'class' => 'alert-success'));
+            return $this->redirect(array('controller' => 'user_roles','action' => 'index_fcoord'));
+      } else  {
+           $this->Session->setFlash(__('The  Form Admin could not be saved. Please, try again.'), 'alert', array(
+            'class' => 'alert-success'));
+      }
+    }
+    unset($this->request->data);
+    $institutions = $this->UserRole->Institution->find('list');
+    $departments = [];
+    $staffs = [];
+    $this->set(compact('institutions', 'departments', 'staffs','roles'));
+}
+
 
 public function view_admin($id = null)
 {
