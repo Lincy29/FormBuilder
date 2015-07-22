@@ -225,7 +225,7 @@ public function view_fcoord($id = null)
 
 public function deactivate_admin($id = null)
 {
-  if (!$this->UserRole->exists()) {
+  if (!$this->UserRole->exists($id)) {
       throw new NotFoundException(__('Invalid Role'));
   }
 

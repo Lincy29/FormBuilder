@@ -20,7 +20,7 @@ class CategoriesController extends AppController {
     $this->Category->recursive = -1;
     $this->Paginator->settings = array(
   'page' => 1,
-  'contain' => ['Department'=>['fields'=>['name']]],'fields'=>['id','category_name']);
+  'contain' => ['Department'=>['fields'=>['name']]],'fields'=>['id','category_name','recstatus']);
     $this->set('categories', $this->Paginator->paginate());
  }
     public function add() {
@@ -134,10 +134,34 @@ public function edit_category_fadmin($id = null) {
   }
 }
 
+public function deactivate_cate($id = null)
+{
+  //debug($this->Category->exists());exit();
+  if (!$this->Category->exists($id)) {
+      throw new NotFoundException(__('Invalid Category'));
+  }
+
+  if ($this->request->is(array('post','put'))) {
+    $this->request->data['Category']['id'] = $id;
+    $this->request->data['Category']['recstatus'] = 0;
+    if ($this->Category->save($this->request->data, true, array('id','recstatus'))) {
+      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    } else {
+      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    }
+    return $this->redirect(array('controller' => 'categories','action' => 'index'));
+  }
+}
+
+
 public function deactivate_category($id = null)
 {
   //debug($this->Category->exists());exit();
-  if (!$this->Category->exists()) {
+  if (!$this->Category->exists($id)) {
       throw new NotFoundException(__('Invalid Category'));
   }
 
@@ -154,6 +178,29 @@ public function deactivate_category($id = null)
       ));
     }
     return $this->redirect(array('controller' => 'categories','action' => 'index_category'));
+  }
+}
+
+public function deactivate_category_fadmin($id = null)
+{
+  //debug($this->Category->exists());exit();
+  if (!$this->Category->exists($id)) {
+      throw new NotFoundException(__('Invalid Category'));
+  }
+
+  if ($this->request->is(array('post','put'))) {
+    $this->request->data['Category']['id'] = $id;
+    $this->request->data['Category']['recstatus'] = 0;
+    if ($this->Category->save($this->request->data, true, array('id','recstatus'))) {
+      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    } else {
+      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    }
+    return $this->redirect(array('controller' => 'categories','action' => 'index_category_fadmin'));
   }
 }
 

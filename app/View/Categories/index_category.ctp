@@ -11,6 +11,7 @@
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($categories as $category): ?>
+	<?php if($category['Category']['recstatus'] == 1){ ?>
 	<tr>
 		<td><?php echo h($category['Category']['id']); ?>&nbsp;</td>
 		<td><?php echo h($category['Institution']['name']); ?>&nbsp;</td>
@@ -25,6 +26,7 @@
 		?>
 		</td>
 	</tr>
+<?php } ?>
 <?php endforeach; ?>
 	</table>
 
