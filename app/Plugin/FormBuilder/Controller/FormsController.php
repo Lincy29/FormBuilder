@@ -182,11 +182,11 @@ public function create()
 {
 if ($this->request->is(array('post', 'put'))) {
    $this->Form->create();
-   $this->loadModel('Demo');
-           $code = $this->request->query('t1');
-           $this->request->data['Demo']['code'] = $code;
+   //$this->loadModel('Demo');
+          // $code = $this->request->query('t1');
+           $this->request->data['Form']['code'] = $code;
            $this->Demo->save($this->request->data);
-        }
+   }
 
 }
 

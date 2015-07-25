@@ -1,6 +1,7 @@
+<div class="table-responsive">
 <div class="degrees index">
 	<h2><?php echo __('Degrees'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('institution_id'); ?></th>

@@ -12,10 +12,11 @@
      $(document).ready(function(){
           $("#fetchcode").click(function(){
 
-          	$("#render :input").each(function(){
-          		var input = $(this);
+          	$("#target :input").each(function(){
+          		 
+               console.log($(this).attr('type'));
           	});
-          	console.log(input.length);
+          
            
    /* things we tried*/
           /*  var code=$("#render").val();                

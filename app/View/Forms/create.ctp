@@ -1,18 +1,24 @@
 <!-- <link href="css/custom.css?v=2" rel="stylesheet"> -->
 <?php echo $this->Html->css('custom'); ?>
 
-<script type="text/javascript">
+ <script type="text/javascript">
+     
+ $(document).ready(function(){
+    $("#fetchcode").click(function(){
+       var code=$("#render").val();                
+       $("#codetext").val(code);
+            
+       $("#target .component .form-group :input").each(function() {
+		console.log($(this).attr('type'));
+       });
+    });
+  });
+ </script>
 
-$(document).ready(function(){
-	$("fieldset").css({"color":"red" , "border":" 2px solid red"});;
-});
-	.</script>
 
 <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Bootstrap Form Builder</a>
-        </div>
+        
       </div>
     </div>
     <div class="container">
@@ -51,7 +57,12 @@ $(document).ready(function(){
           </div>
         </div>
         <!-- / Components -->
-
+<div>
+   <textarea id="codetext"> </textarea><br>
+   <input type="text" id="type1"><br>
+<button id="fetchcode">OK</button>
+     </div>
+ 
       </div>
       
 
