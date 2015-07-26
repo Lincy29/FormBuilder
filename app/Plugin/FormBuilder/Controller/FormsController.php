@@ -180,18 +180,17 @@ public function deactivate_fcoord($id = null)
 
 public function create()
 {
-if ($this->request->is(array('post', 'put'))) {
-   $this->Form->create();
-   //$this->loadModel('Demo');
-          // $code = $this->request->query('t1');
+ $this->request->onlyAllow('ajax');
+ $code = $this->request->query('text');
+if ($this->request->is('get') {
+   $this->Form->create();           
            $this->request->data['Form']['code'] = $code;
-           $this->Demo->save($this->request->data);
-   }
+           $this->Form->save($this->request->data);
+        }
 
-}
 
-}
 
+ }
 
 
 ?>

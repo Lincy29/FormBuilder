@@ -4,15 +4,26 @@
  <script type="text/javascript">
      
  $(document).ready(function(){
-    $("#fetchcode").click(function(){
+    $("#submit").click(function(){
        var code=$("#render").val();                
+       
        $("#codetext").val(code);
-            
-       $("#target .component .form-group :input").each(function() {
-		console.log($(this).attr('type'));
+       var data = <?php echo json_encode($code);?>
+       $.ajax({
+            type: 'get',
+            url: 'create',
+            data : {text:data},
+            success: function(response) {
+               console.log(response);
+            },           
        });
+
+       $("#target .component .form-group :input").each(function() {
+		  console.log($(this).attr('type'));
+	   });	
     });
   });
+
  </script>
 
 
@@ -58,10 +69,18 @@
         </div>
         <!-- / Components -->
 <div>
-   <textarea id="codetext"> </textarea><br>
-   <input type="text" id="type1"><br>
-<button id="fetchcode">OK</button>
-     </div>
+  <!-- <textarea id="codetext"> </textarea><br>
+   <button id="fetchcode">OK</button> -->
+ <?php
+echo $this->Form->textarea('code',array('id' => 'codetext'));
+echo $this->Form->submit('Submit', array(
+	            'id' => 'submit',
+				'div' => false,
+				'class' => 'btn btn-primary'
+			));
+?>
+
+</div>
  
       </div>
       
