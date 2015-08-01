@@ -33,6 +33,6 @@ class UserRole extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = ['Institution','Department','Staff','Role','User'];
+	public $belongsTo = ['Institution','Department','Staff','Role','User','Student'];
 
 }

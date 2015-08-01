@@ -1,6 +1,7 @@
+<div class="table-responsive">
 <div class="degrees index">
 	<h2><?php echo __('Degrees'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('department_id'); ?></th>
@@ -15,9 +16,9 @@
 		</td>
 		<td><?php echo h($degree['Degree']['name']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $degree['Degree']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $degree['Degree']['id'])); ?>
-		</td>
+			
+				<?php echo $this->Html->link(__('', true), array('action' => 'index', $degree['Degree']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $degree['Degree']['id'])); ?>		</td>
 	</tr>
 <?php endforeach; ?>
 	</table>

@@ -31,6 +31,7 @@
  */
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect('/dashboard', array('controller' => 'users', 'action' => 'dashboard'));
+Router::connect('/create', array('controller' => 'forms', 'action'=> 'create'));
 Router::setExtensions(array('json', 'xml','pdf'));
 Router::parseExtensions('json', 'xml','pdf');
 

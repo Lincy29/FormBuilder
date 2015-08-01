@@ -19,6 +19,7 @@ public $validate = [];
  * @var array
  */
 
-   public $belongsTo = ['Institution','Degree'];
-   public $hasMany = ['TrainingAndPlacement.ResultBoard','TrainingAndPlacement.ExamMaster','User'];
+   public $belongsTo = ['Institution','Degree','Department'];
+   public $hasMany = ['User','UserRole'];
+   //public $hasMany = ['TrainingAndPlacement.ResultBoard','TrainingAndPlacement.ExamMaster','User'];
 }

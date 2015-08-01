@@ -2,7 +2,8 @@
 <div class="table-responsive">
 <div class="students view">
 <h3><?php echo __('Student Profile'); ?></h3>
-<table class="table table-striped">
+<table cellpadding="0" cellspacing="0" class="table table-striped">
+	
 		<tr><th><?php echo __('Firstname'); ?></th>
 		<td>
 			<?php echo h($student['Student']['firstname']); ?>

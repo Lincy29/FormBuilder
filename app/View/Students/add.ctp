@@ -1,39 +1,63 @@
+<div class="row">
+          <div class="col-lg-6">
 <div class="students form">
-<?php echo $this->Form->create('Student'); ?>
+<?php echo $this->Html->script('manage_degree');?>
+<?php echo $this->Form->create('Student', array(
+	'inputDefaults' => array(
+		'div' => 'form-group',
+		'wrapInput' => false,
+		'class' => 'form-control'
+	),
+	'class' => 'well form-horizontal'
+)); ?>
 	<fieldset>
 		<legend><?php echo __('Add Student'); ?></legend>
 	<?php
-		echo $this->Form->input('creator_id');
-		echo $this->Form->input('modifier_id');
-		echo $this->Form->input('recstatus');
-		echo $this->Form->input('firstname');
-		echo $this->Form->input('lastname');
-		echo $this->Form->input('email');
-		echo $this->Form->input('instituteid');
-		echo $this->Form->input('phone1');
-		echo $this->Form->input('phone2');
-		echo $this->Form->input('C_Address-1');
-		echo $this->Form->input('C_Address-2');
-		echo $this->Form->input('C_Address-3');
-		echo $this->Form->input('C_City');
-		echo $this->Form->input('C_State');
-		echo $this->Form->input('C_Pincode');
-		echo $this->Form->input('P_Address-1');
-		echo $this->Form->input('P_Address-2');
-		echo $this->Form->input('P_Address-3');
-		echo $this->Form->input('P_City');
-		echo $this->Form->input('P_State');
-		echo $this->Form->input('P_Pincode');
-		echo $this->Form->input('picture');
-		echo $this->Form->input('studentstatus');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Html->link(__('List Students'), array('action' => 'index')); ?></li>
-	</ul>
+		$url = $this->Html->url(array(
+										'controller' => 'departments',
+										'plugin' => false,
+										'action' => 'list_departments',
+										'ext' => 'json')); 
+		$urla= $this->Html->url(array(
+										'controller' => 'degrees', 
+									    'plugin'=>false,
+								        'action' => 'list_degrees',		
+								        'ext' => 'json'));
+
+$emptyDepartment = count($departments) > 0 ? Configure::read('Select.defaultAfter') : array(
+	'0' => Configure::read('Select.naBefore') . __('Select Institution First') . Configure::read('Select.naAfter')
+);	
+
+$emptyDegree     = count($degrees) > 0 ? Configure::read('Select.defaultAfter') : array('0' => Configure::read('Select.naBefore') . __('Select Department First') . Configure::read('Select.naAfter')
+);
+	echo $this->Form->input('institution_id', array(
+	'id' => 'institutions',
+	'empty' => 'Please Select First',
+	'rel' => $url	
+));
+echo $this->Form->input('department_id', array(
+	'id' => 'departments',
+	'empty' => $emptyDepartment,
+	'rel' => $urla));
+echo $this->Form->input('degree_id', array(
+	'id' => 'degrees',
+	'empty' => $emptyDegree));
+
+echo $this->Form->input('firstname');
+echo $this->Form->input('lastname');
+echo $this->Form->input('User.username');
+echo $this->Form->input('User.password');
+echo $this->Form->input('User.email');
+	
+	?>
+	<div class="col col-md-9 col-md-offset-3">
+			<?php echo $this->Form->submit('Submit', array(
+				'div' => false,
+				'class' => 'btn btn-primary'
+			)); ?>
+			<button type="reset" class="btn btn-default">Cancel</button>
+		</div>
+	</fieldset>
+
 </div>

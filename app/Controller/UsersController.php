@@ -14,16 +14,18 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	//public $components = array('Paginator');
 /**
  * dashboard method
  *
  * @return void
  */
 	public function dashboard() {
-        //debug($this->Auth->user());
-        $fullname = $this->Auth->user('fullname');
-        $modified = $this->Auth->user('modified');
+
+//debug($this->Auth->user());
+
+        $fullname = $this->Auth->User('fullname');
+        $modified = $this->Auth->User('modified');
         $staff_id = $this->Auth->user('staff_id');
         $student_id = $this->Auth->user('student_id');
 
@@ -33,7 +35,7 @@ class UsersController extends AppController {
             $this->User->save($this->request->data,true,array('id','first_login'));
         }
 
-        if($staff_id != 0) {
+        /*if($staff_id != 0) {
             $data = $this->User->Staff->find('first', array('fields' => array('Staff.institution_id','Staff.department_id'), 'conditions' => array('Staff.id' => $staff_id)));
             $this->Session->write('institution_id',$data['Staff']['institution_id']);
             $this->Session->write('department_id',$data['Staff']['department_id']);
@@ -43,11 +45,10 @@ class UsersController extends AppController {
             $this->Session->write('degree_id',$data['Student']['degree_id']);
             $content = $this->User->Student->Degree->find('first', array('fields' => array('Degree.department_id'), 'conditions' => array('Degree.id' => $data['Student']['degree_id'])));
             $this->Session->write('department_id',$content['Degree']['department_id']);
-        }
+        }*/
 
         $this->set(compact('fullname','modified'));
     }
-
 
 
     
@@ -91,7 +92,7 @@ class UsersController extends AppController {
                 return $this->redirect('/dashboard');
         }
         if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
+            if ($this->Auth->login()) {         //inbuilt method checks authentication
                 if ($this->Auth->user('recstatus') == 0) {
                     $this->Session->setFlash('User not active.');
                     $this->Auth->logout();
@@ -169,7 +170,7 @@ class UsersController extends AppController {
                 // Send email
                 $Email = new CakeEmail('gmail');
                 $Email->to($res['User']['email'], $res['User']['username']);
-                $Email->from('jayeshanandani@gmail.com');
+                $Email->from('bijaljmevada@gmail.com');
                 $Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
                 $Email->template('lost_password');
                 $Email->viewVars(compact('code'));
@@ -270,7 +271,7 @@ class UsersController extends AppController {
                 debug($this->request->data);
                 $this->Session->setFlash('Password saved successfully.You can login now.');
                 $this->Session->delete('Auth.Tmp');
-                $username = $this->User->field('username', array(
+                $username = $this->User->fieoold('username', array(
                     'id' => $uid
                 ));
                 $this->redirect(array(

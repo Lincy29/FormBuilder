@@ -48,7 +48,7 @@ class InstitutionsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Institution->create();
-			$this->request->data = $this->Institution->find('first', array('contain' => array('Deptartment'), 'conditions' => array('Institution.id' => 1)));
+			//$this->request->data = $this->Institution->find('first', array('contain' => array('Department'), 'conditions' => array('Institution.id' => 1)));
 			if ($this->Institution->save($this->request->data)) {
 				$this->Session->setFlash(__('The institution has been saved.'));
 				return $this->redirect(array('action' => 'index'));

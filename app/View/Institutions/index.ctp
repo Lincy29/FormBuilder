@@ -1,6 +1,7 @@
+<div class="table-responsive">
 <div class="institutions index">
 	<h2><?php echo __('Institutions'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
@@ -11,7 +12,8 @@
 		<td><?php echo h($institution['Institution']['id']); ?>&nbsp;</td>
 		<td><?php echo h($institution['Institution']['name']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $institution['Institution']['id'])); ?>
+			<?php echo $this->Html->link(__('', true), array('action' => 'index', $institution['Institution']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
+
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $institution['Institution']['id'])); ?>
 		</td>
 	</tr>

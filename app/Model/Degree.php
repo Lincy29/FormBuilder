@@ -21,7 +21,7 @@ class Degree extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = ['Department'];
+	public $belongsTo = ['Department','Institution'];
 /**
  * hasMany associations
  *
