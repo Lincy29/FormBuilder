@@ -8,7 +8,7 @@
        var code=$("#render").val();                
        
        $("#codetext").val(code);
-     
+
      var label = $('.col-md-3 control-label');
      console.log(label);
 
@@ -20,6 +20,7 @@
 
 		  $("#attribute").val(attr_val.join("-"));
 	   });	 
+
     });
   });
 
@@ -71,9 +72,11 @@
   <!-- <textarea id="codetext"> </textarea><br>
    <button id="fetchcode">OK</button> -->
  <?php
+
  echo $this->Form->create('Form');
 echo $this->Form->input('code',array('id' => 'codetext','type'=>'hidden'));
 echo $this->Form->input('attribute',array('id' => 'attribute','type'=>'hidden'));
+
 echo $this->Form->submit('Submit', array(
 	            'id' => 'submit',
 				'div' => false,

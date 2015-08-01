@@ -11,7 +11,10 @@
 			<th><?php echo $this->Paginator->sort('role_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
+
 	<?php foreach ($admins as $admin): ?>
+	<?php if($admin['UserRole']['recstatus'] == 1){ ?>
+
 	<tr>
 
 		<td>
@@ -36,7 +39,11 @@
 		
 		</td>
 	</tr>
+
+<?php } ?>
 <?php endforeach; ?>
+
+
 	</table>
 	<p>
 	<?php
@@ -53,3 +60,4 @@
                     </ul>
 </div>
 </div>
+

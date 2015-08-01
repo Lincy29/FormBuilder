@@ -3,6 +3,12 @@
 	<fieldset>
 		<legend><?php echo __('Add Academic Year'); ?></legend>
 	<?php
+
+	    echo $this->Form->input('institution_id', array(
+	'id' => 'institutions',
+	'empty' => 'Please Select First'	
+));
+
 		echo $this->Form->input('name');
 	?>
 	</fieldset>

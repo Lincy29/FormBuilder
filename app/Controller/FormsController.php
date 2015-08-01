@@ -16,6 +16,7 @@ public function index() {
 	if ($this->request->is('post')) {
            $this->Form->create();
             if ($this->Form->save($this->request->data)) {
+
              // debug($this->Form->getLastInsertId());exit;
               $this->Session->write('form_id',$this->Form->getLastInsertId());
                 //$this->set($id= $this->Form->getLastInsertId(),$this->form_id);
@@ -37,6 +38,7 @@ public function index() {
   $this->set(compact('institutions','departments', 'categories'));  
      
    }
+
 
    public function add_fadmin() {
   
@@ -148,5 +150,6 @@ if ($this->Form->save($this->request->data)) {
  
 
 }
+
 
 ?>

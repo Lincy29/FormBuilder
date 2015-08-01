@@ -6,12 +6,20 @@ $(function() {
             dataType: 'json'
           });
         
+<<<<<<< HEAD
         request.done(function( response ) {
+=======
+       request.done(function( response ) {
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
             if (response.departments) {
               destination.empty(),
               destination.append('<option value="Please Select">Please Select</option>');
               appendData(response.departments, destination);
+<<<<<<< HEAD
             }
+=======
+            } 
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
             
            if (response.degrees) {
               destination.empty(),

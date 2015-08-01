@@ -20,6 +20,10 @@ public $validate = [];
  */
 
    public $belongsTo = ['Institution','Degree','Department'];
+<<<<<<< HEAD
    public $hasMany = ['User','UserRole'];
+=======
+   public $hasMany = ['User'];
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
    //public $hasMany = ['TrainingAndPlacement.ResultBoard','TrainingAndPlacement.ExamMaster','User'];
 }

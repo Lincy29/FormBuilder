@@ -180,7 +180,18 @@ public function deactivate_fcoord($id = null)
 
 public function create()
 {
+<<<<<<< HEAD
  }
+=======
+ $this->request->onlyAllow('ajax');
+ $code = $this->request->query('text');
+if ($this->request->is('get') {
+   $this->Form->create();           
+           $this->request->data['Form']['code'] = $code;
+           $this->Form->save($this->request->data);
+        }
+
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
 
 
  }

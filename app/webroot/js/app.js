@@ -3,13 +3,21 @@ define([
        , "collections/snippets" , "collections/my-form-snippets"
        , "views/tab" , "views/my-form"
        , "text!data/input.json", "text!data/radio.json", "text!data/select.json", "text!data/buttons.json"
+<<<<<<< HEAD
        , "text!templates/app/render.html", 
+=======
+       , "text!templates/app/render.html",  "text!templates/app/about.html",
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
 ], function(
   $, _, Backbone
   , SnippetsCollection, MyFormSnippetsCollection
   , TabView, MyFormView
   , inputJSON, radioJSON, selectJSON, buttonsJSON
+<<<<<<< HEAD
   , renderTab
+=======
+  , renderTab, aboutTab
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
 ){
   return {
     initialize: function(){
@@ -35,7 +43,15 @@ define([
         title: "Rendered"
         , content: renderTab
       });
+<<<<<<< HEAD
       
+=======
+      new TabView({
+        title: "About"
+        , content: aboutTab
+      });
+
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
       //Make the first tab active!
       $("#components .tab-pane").first().addClass("active");
       $("#formtabs li").first().addClass("active");

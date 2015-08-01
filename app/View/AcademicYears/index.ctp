@@ -9,6 +9,9 @@
 	<?php foreach ($academicYears as $academicYear): ?>
 	<tr>
 		<td><?php echo h($academicYear['AcademicYear']['id']); ?>&nbsp;</td>
+
+		<td><?php echo h($academicYear['Institution']['name']); ?>&nbsp;</td>
+
 		<td><?php echo h($academicYear['AcademicYear']['name']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $academicYear['AcademicYear']['id'])); ?>

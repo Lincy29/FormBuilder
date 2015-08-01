@@ -21,6 +21,7 @@ class Institution extends AppModel {
  *
  * @var array
  */
-	public $hasMany = ['Department','Staff','Student','UserRole','SupportTicketSystem.Category','Category','Form','Degree'];
+
+	public $hasMany = ['Department','Staff','Student','UserRole','Category','Degree','AcademicYear'];
 
 }

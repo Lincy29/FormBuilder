@@ -72,12 +72,8 @@ public $validate = [
  */
 
     public $belongsTo = ['Student','Staff','CompanyMaster'];
-/**
- * hasMany associations
- * @var array
- */
 
-    public $hasMany = ['SupportTicketSystem.Ticket'];
+
 
 /**
  * hasAndBelongsToManyo associations

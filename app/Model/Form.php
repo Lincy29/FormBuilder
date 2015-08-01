@@ -36,7 +36,9 @@ class Form Extends AppModel {
     ];
  
  public $belongsTo = ['Institution','Department','Category'];
+
  public $hasMany = ['Element','FormElement'];
+
 
 public $displayField='id';
 

@@ -1,4 +1,3 @@
-<div class="table-responsive">
 <div class="institutions view">
 <h2><?php echo __('Institution'); ?></h2>
 	<dl>
@@ -38,5 +37,4 @@
 	</table>
 <?php endif; ?>
 	</div>
-</div>
 </div>

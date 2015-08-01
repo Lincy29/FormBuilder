@@ -1,6 +1,9 @@
 <div class="row">
           <div class="col-lg-6">
 <div class="institutions form">
+
+	<?php echo $this->Html->script('manage_role');?>
+
 <?php echo $this->Form->create('Category', array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
@@ -11,13 +14,26 @@
 )); ?>
 <fieldset>
 <?php
-echo $this->Form->input('institution_id', array(
-	'id' => 'institutions',
-	'empty' => 'Please Select First'));
 
+		$url = $this->Html->url(array(
+										'controller' => 'departments',
+										'plugin' => false,
+										'action' => 'list_departments',
+										'ext' => 'json'));
+
+	$emptyDepartment = count($departments) > 0 ? Configure::read('Select.defaultAfter') : array(
+	'0' => Configure::read('Select.naBefore') . __('Select Institution First') . Configure::read('Select.naAfter')
+);
+
+	   echo $this->Form->input('institution_id', array(
+	'id' => 'institutions',
+	'empty' => 'Please Select First',
+	'rel' => $url	
+));
 echo $this->Form->input('department_id', array(
 	'id' => 'departments',
-	'empty' => 'Please Select First'));
+	'empty' => $emptyDepartment
+	));
 
 echo $this->Form->input('category_name');?>
 <div class="col col-md-9 col-md-offset-3">

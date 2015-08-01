@@ -8,15 +8,37 @@ App::uses('AppModel', 'Model');
  */
 class UserRole extends AppModel {
 
-	public $validate = array(
+	
 
-    'user_id' => array(
 
-        'unique' => array('rule' => array('checkUnique',array('user_id','role_id','recstatus')),
+	public $validate = [
+
+    'user_id' => [
+
+        'unique' => ['rule' => ['checkUnique',['user_id','role_id','recstatus']],
                                            'message' => 'For this User , Role exists!'
-                         ),
-       				 )       
-				);
+                         ],
+       				 ],
+       				 'institution_id' => [
+            'required' => [
+                'rule' => ['notEmpty'],
+                'message' => 'Please select institution.'
+            ],
+        ],
+        'department_id' => [
+            'required' => [
+                'rule' => ['notEmpty'],
+                'message' => 'please select department.'
+            ],
+        ],
+        'staff_id' => [
+            'required' => [
+                'rule' => ['notEmpty'],
+                'message' => 'please select department.'
+            ],
+        ]      
+				];
+
 
 /**
  * Display field

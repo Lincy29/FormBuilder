@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
 define([
        "jquery", "underscore", "backbone"
       , "views/temp-snippet"

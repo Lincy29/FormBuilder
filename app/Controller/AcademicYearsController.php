@@ -55,6 +55,11 @@ public $components = array('Paginator','Session');
 				$this->Session->setFlash(__('The academic year could not be saved. Please, try again.'));
 			}
 		}
+
+
+	 $institutions = $this->AcademicYear->Institution->find('list');  
+	 $this->set(compact('institutions','departments', 'categories'));  
+
 	}
 
 /**
@@ -79,7 +84,11 @@ public $components = array('Paginator','Session');
 			$options = array('conditions' => array('AcademicYear.' . $this->AcademicYear->primaryKey => $id));
 			$this->request->data = $this->AcademicYear->find('first', $options);
 		}
+		 $institutions = $this->AcademicYear->Institution->find('list');
+		 $this->set(compact('institutions'));
 	}
+
+
 
 /**
  * list_years method

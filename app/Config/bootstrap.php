@@ -141,4 +141,9 @@ Configure::write('fbadmin',6);
 Configure::write('deptcoordinator',7);
 Configure::write('stcoordinator',8);
 Configure::write('user',9);
+<<<<<<< HEAD
 Configure::write('company',10);
+=======
+Configure::write('formadmin',10);
+Configure::write('formcoordinator',11);
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719

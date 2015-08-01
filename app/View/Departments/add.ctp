@@ -1,6 +1,9 @@
 <div class="row">
           <div class="col-lg-6">
-<div class="departments form">
+
+<div class="institutions form">
+	<?php echo $this->Html->script('manage_role');?>
+
 <?php echo $this->Form->create('Department', array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
@@ -9,6 +12,9 @@
 	),
 	'class' => 'well form-horizontal'
 )); ?>
+
+<fieldset>
+
 	<fieldset>
 		<legend><?php echo __('Add Department'); ?></legend>
 	<?php
@@ -22,6 +28,6 @@
 			)); ?>
 			<button type="reset" class="btn btn-default">Cancel</button>
 		</div>
-	</fieldset>
 
+		<fieldset>
 </div>
