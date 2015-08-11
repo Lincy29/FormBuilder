@@ -143,3 +143,4 @@ Configure::write('stcoordinator',8);
 Configure::write('user',9);
 Configure::write('formadmin',10);
 Configure::write('formcoordinator',11);
+Configure::write('student',12);

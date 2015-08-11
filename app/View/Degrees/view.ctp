@@ -6,9 +6,14 @@
 			<?php echo h($degree['Degree']['id']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Institution'); ?></dt>
+		<dd>
+			<?php echo h($degree['Institution']['name']);?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Department'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($degree['Department']['name'], array('controller' => 'departments', 'action' => 'view', $degree['Department']['id'])); ?>
+			<?php echo h($degree['Department']['name']);?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>

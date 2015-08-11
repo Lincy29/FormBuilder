@@ -16,7 +16,14 @@ public function index() {
 	if ($this->request->is('post')) {
            $this->Form->create();
             if ($this->Form->save($this->request->data)) {
+             // debug($this->Form->getLastInsertId());exit;
+              $this->Session->write('form_id',$this->Form->getLastInsertId());
+                //$this->set($id= $this->Form->getLastInsertId(),$this->form_id);
+              $form_id=$this->Form->getLastInsertID();
+             // debug($form_id);
+            
                 $this->Session->setFlash(__('New form has been added.'));
+
                 return $this->redirect(array('action' => 'create'));
             }
             else{
@@ -28,7 +35,8 @@ public function index() {
   $departments = [];
   $categories = [];
   $this->set(compact('institutions','departments', 'categories'));  
-     }
+     
+   }
 
    public function add_fadmin() {
   
@@ -64,7 +72,25 @@ public function index() {
   unset($this->request->data);  
   $categories = $this->Form->Category->find('list'); 
   $this->set(compact('categories'));  
-     }
+}
+public function edit_coord($id = null) {
+    if (!$this->Form->exists($id)) {
+      throw new NotFoundException(__('Invalid name'));
+    }
+    if ($this->request->is(array('post', 'put'))) {
+      if ($this->Form->save($this->request->data)) {
+        $this->Session->setFlash(__('The form has been saved.'));
+        return $this->redirect(array('action' => 'index_fcoord'));
+      } else {
+        $this->Session->setFlash(__('The Form could not be saved. Please, try again.'));
+      }
+    }
+  else {
+      $options = array('conditions' => array('Form.' . $this->Form->primaryKey => $id));
+      $this->request->data = $this->Form->find('first', $options);
+          
+    }
+}
 
   public function edit($id = null) {
     if (!$this->Form->exists($id)) {
@@ -85,25 +111,63 @@ public function index() {
       $this->set(compact('institutions')); 
       $departments = [];  
       $this->set(compact('institutions','departments')); 
-     /* $departments = $this->Form->Department->find('list');
-      $this->set(compact('departments')); */
+     
     }
 }
 
 public function create()
 {
-if ($this->request->is(array('post', 'put'))) {
-   $this->Form->create();
-$this->loadModel('Demo');
-           $code = $this->request->query('t1');
-           $this->request->data['Demo']['code'] = $code;
-           $this->Demo->save($this->request->data);
-        }
 
+ if ($this->request->is('post')) {
+           $this->Form->create();
+            
+        $form_id=$this->Session->read('form_id');
+        $this->request->data['Form']['id']=$form_id;        
+         debug($this->request->data);exit();
+         if ($this->Form->save($this->request->data)) {
+                $this->Session->setFlash(__('Form has been added.'));               
+         }else{
+           $this->Session->setFlash(__('Unable to add form.'));
+         }            
+           $attr=$this->request->data['Form']['attribute'];
+           $att_array=explode('-',$attr);
+           $label=$this->request->data['Form']['label'];
+           $label_array=explode('-',$label);
+             
+           $cnt='0';
+           $i='0';
+           foreach ($att_array as $value) {     
+
+                     $this->request->data=$this->Form->Element->find('first',
+                     array('conditions' => array('Element.name' => $value)));
+          
+                 $id=$this->request->data['Element']['id'];
+                
+                 $this->request->data['FormElement']['element_id'] = $id;
+                 $this->request->data['FormElement']['form_id'] = $form_id; 
+                $this->request->data['FormElement']['label'] = $label_array[$i];
+                 
+                 if($id!='16' || $cnt=='0'){          
+                 debug($this->request->data);exit();
+                 $this->Form->FormElement->saveMany($this->request->data);
+                 }  
+                 if($id=='16'){
+                 $cnt='1';}   
+                 else{$cnt='0';} 
+
+                 $i++;                    
+           }  
+                                    
+        } 
+  } 
+ 
+public function view() {
+      
+      $code = $this->Form->find('all', array('conditions' => array('Form.code !=' => 'null'),
+                                             'fields' => array('Form.code')));
+     
+      debug($code);
+  }
 }
-
-}
-
-
 
 ?>

@@ -32,5 +32,5 @@ echo $this->Form->input('category_name',array('label'=>'Enter new Category:'));
 			)); ?>
 			<button type="reset" class="btn btn-default">Cancel</button>
 		</div>
-		<fieldset>
+		</fieldset>
 </div>

@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Institution'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($department['Institution']['name'], array('controller' => 'institutions', 'action' => 'view', $department['Institution']['id'])); ?>
+			<?php echo h($department['Institution']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -17,7 +17,7 @@
 			&nbsp;
 		</dd>
 	</dl>
-</div>
+</div><!--
 <div class="related">
 	<h3><?php echo __('Related Degrees'); ?></h3>
 	<?php debug($department['Degree']); ?>
@@ -42,4 +42,5 @@
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
-</div>
+</div> -->
+

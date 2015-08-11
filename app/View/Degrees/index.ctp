@@ -10,11 +10,13 @@
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($degrees as $degree): ?>
+		
 	<tr>
 		<td><?php echo h($degree['Degree']['id']); ?>&nbsp;</td>
 		<td><?php echo h($degree['Institution']['name']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($degree['Department']['name'], array('controller' => 'departments', 'action' => 'view', $degree['Department']['id'])); ?>
+			<?php echo h($degree['Department']['name']); ?>&nbsp;
+			<!--<?php echo $this->Html->link($degree['Department']['name'], array('controller' => 'departments', 'action' => 'view', $degree['Department']['id'])); ?>-->
 		</td>
 		<td><?php echo h($degree['Degree']['name']); ?>&nbsp;</td>
 		<td class="actions">

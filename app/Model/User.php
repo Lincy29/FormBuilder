@@ -72,7 +72,7 @@ public $validate = [
  */
 
     public $belongsTo = ['Student','Staff','CompanyMaster'];
-    public $hasMany= ['Student'];
+    //public $hasMany= ['Student'];
 /**
  * hasMany associations
  * @var array

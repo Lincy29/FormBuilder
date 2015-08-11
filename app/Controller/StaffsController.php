@@ -103,8 +103,10 @@ public function index() {
 		} 
 		else {
 			$option = array('conditions' => array('User.staff_id'=>$id));
-			$this->request->data = $this->Staff->find('first',array('conditions' => array('staff.id'=>$id)));	
-			
+			//debug($options);exit();
+
+			$this->request->data = $this->Staff->find('first',array('conditions' => array('id'=>$id)));	
+			//debug($this->request->data );exit();
 			$username=$this->Staff->User->find('first',array('fields' =>['User.username','User.email'],'conditions' => ['User.staff_id'=>$id]));		
 			
 			$this->request->data['User']['username']=$username['User']['username'];

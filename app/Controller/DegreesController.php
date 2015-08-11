@@ -23,8 +23,12 @@ class DegreesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Degree->recursive = 0;
+		$this->Degree->recursive = -1;
+		 $this->Paginator->settings = array(
+  'page' => 1,
+  'contain' => ['Institution'=>['fields'=>['name']],'Department'=>['fields'=>['name']]],'fields'=>['id','name']);
 		$this->set('degrees', $this->Paginator->paginate());
+
 	}
 
 /**
@@ -38,7 +42,11 @@ class DegreesController extends AppController {
 		if (!$this->Degree->exists($id)) {
 			throw new NotFoundException(__('Invalid degree'));
 		}
-		$options = array('conditions' => array('Degree.' . $this->Degree->primaryKey => $id));
+		$options =array(
+    'recursive' => - 1,
+    'contain' => ['Institution','Department'],
+    'conditions' => array('Degree.' . $this->Degree->primaryKey => $id
+    ));
 		$this->set('degree', $this->Degree->find('first', $options));
 	}
 

@@ -5,22 +5,27 @@
      
  $(document).ready(function(){
     $("#submit").click(function(){
-       var code=$("#render").val();                
+       var code=$("#render").val();        
+       $("#codetext").val(code);  
        
-       $("#codetext").val(code);
-       var data = <?php echo json_encode($code);?>
-       $.ajax({
-            type: 'get',
-            url: 'create',
-            data : {text:data},
-            success: function(response) {
-               console.log(response);
-            },           
-       });
+      var attr_val= new Array();
+      var labels= new Array();
+      $("#target .component .form-group :input").each(function() {
+       	  attr_val.push($(this).attr('name'));
+          $("#attribute").val(attr_val.join("-"));
 
-       $("#target .component .form-group :input").each(function() {
-		  console.log($(this).attr('type'));
+          var val_of_label = $(this).attr('name');
+          labels.push($('label[for='+val_of_label+']').text());
+          <? debug('val_of_label');exit();?>
+          $("#label").val(labels.join("-"));
+		     
 	   });	
+
+          $("#target .component .form-group :select").each(function() {
+          attr_val.push($(this).attr('name'));
+          $("#attribute").val(attr_val.join("-"));
+     });    
+       
     });
   });
 
@@ -72,7 +77,10 @@
   <!-- <textarea id="codetext"> </textarea><br>
    <button id="fetchcode">OK</button> -->
  <?php
-echo $this->Form->textarea('code',array('id' => 'codetext'));
+echo $this->Form->create('Form');
+echo $this->Form->input('code',array('id' => 'codetext','type'=>'hidden'));
+echo $this->Form->input('attribute',array('id' => 'attribute','type'=>'hidden'));
+echo $this->Form->input('label',array('id' => 'label','type'=>'hidden'));
 echo $this->Form->submit('Submit', array(
 	            'id' => 'submit',
 				'div' => false,

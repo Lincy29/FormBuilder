@@ -11,7 +11,7 @@
 	<tr>
 		<td><?php echo h($department['Department']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($department['Institution']['name'], array('controller' => 'institutions', 'action' => 'view', $department['Institution']['id'])); ?>
+			<?php echo h($department['Institution']['name']);  ?>&nbsp;
 		</td>
 		<td><?php echo h($department['Department']['name']); ?>&nbsp;</td>
 		<td class="actions">

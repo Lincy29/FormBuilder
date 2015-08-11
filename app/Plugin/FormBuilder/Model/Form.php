@@ -4,6 +4,7 @@ App::uses('FormBuilderAppModel','FormBuilder.Model');
 class Form extends FormBuilderAppModel {
  
  public $belongsTo = ['Institution','Department','Category'];
+  public $hasMany = ['Element','FormElement'];
 
 public $displayField='id';
 

@@ -83,7 +83,8 @@
               </li>
               <li class="divider"></li>
               <?php } ?>
-
+               
+               
               <?php  if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
               <li class="dropdown-header">Manage FormAdmin</li>
                   <li>
@@ -104,6 +105,8 @@
               <li class="divider"></li>
               <?php } ?>
               
+
+
               <?php  if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
               <li class="dropdown-header">Manage FormCoordinator</li>
                   <li>
@@ -190,21 +193,21 @@
           
            <?php if(Auth::hasRoles(['formadmin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
-            <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
+            <?php echo $this->Html->link(__("Form"),array('plugin'=>'form_builder',
                                                         'controller' => 'forms',
                                                         'action' => 'add_fadmin'));
             ?>
            <?php } ?>
            <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
-            <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
+            <?php echo $this->Html->link(__("Form"),array('plugin'=>'form_builder',
                                                         'controller' => 'forms',
                                                         'action' => 'add'));
             ?>
            <?php } ?>
            <?php if(Auth::hasRoles(['formcoordinator'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
-            <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
+            <?php echo $this->Html->link(__("Form"),array('plugin'=>'form_builder',
                                                         'controller' => 'forms',
                                                         'action' => 'add_fcoord'));
             ?>
@@ -236,7 +239,7 @@
           </ul>
         </li>
         <li class="dropdown menu-large">
-          <?php if(Auth::hasRoles(['developer'])) {?>
+          <?php if(Auth::hasRoles(['developer','superadmin'])) {?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Department<b class="caret"></b></a>
           <?php } ?> 
         <ul class="dropdown-menu megamenu row">
@@ -310,31 +313,7 @@
             </li>
           </ul>
         </li>
-         <li class="dropdown menu-large">
-          <?php if(Auth::hasRoles(['developer'])) {?>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Students<b class="caret"></b></a>
-          <?php } ?> 
-        <ul class="dropdown-menu megamenu row">
-          <li class="col-sm-3">
-            <ul>
-              
-                  <li>
-                    <?php echo $this->Html->link(__("New Student",true),[
-                      'plugin'=>false,
-                      'controller' => 'students', 
-                      'action' => 'add_stu']); ?>
-                </li>
-                <li>
-                    <?php echo $this->Html->link(__("View Student",true),[
-                      'plugin'=>false,
-                      'controller' => 'students', 
-                      'action' => 'index']); ?>
-                </li>               
-                
-              </ul>
-            </li>
-          </ul>
-        </li>
+         
           <li>
               <?php echo $this->Html->link(__("Logout",true),[
               'controller' => 'users' ,

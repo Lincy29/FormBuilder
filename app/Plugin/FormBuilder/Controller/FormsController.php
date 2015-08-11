@@ -29,13 +29,20 @@ public function index() {
     $this->set('forms', $this->Paginator->paginate());
  }
 
-    public function add() {
-	
-	if ($this->request->is('post')) {
+  public function add() {
+  
+  if ($this->request->is('post')) {
            $this->Form->create();
             if ($this->Form->save($this->request->data)) {
+             // debug($this->Form->getLastInsertId());exit;
+              $this->Session->write('form_id',$this->Form->getLastInsertId());
+                //$this->set($id= $this->Form->getLastInsertId(),$this->form_id);
+              $form_id=$this->Form->getLastInsertID();
+             // debug($form_id);
+            
                 $this->Session->setFlash(__('New form has been added.'));
-                return $this->redirect(array('action' => 'create'));
+
+                return $this->redirect('/create');
             }
             else{
            $this->Session->setFlash(__('Unable to add form.'));
@@ -46,7 +53,8 @@ public function index() {
   $departments = [];
   $categories = [];
   $this->set(compact('institutions','departments', 'categories'));  
-     }
+     
+   }
 
    public function add_fadmin() {
   
@@ -100,11 +108,50 @@ public function index() {
       $options = array('conditions' => array('Form.' . $this->Form->primaryKey => $id));
       $this->request->data = $this->Form->find('first', $options);
       $institutions = $this->Form->Institution->find('list');
-      $this->set(compact('institutions')); 
       $departments = [];  
-      $this->set(compact('institutions','departments')); 
-     /* $departments = $this->Form->Department->find('list');
-      $this->set(compact('departments')); */
+      $categories = [];
+      $this->set(compact('institutions','departments', 'categories')); 
+    
+    }
+}
+
+public function edit_fadmin($id = null) {
+    if (!$this->Form->exists($id)) {
+      throw new NotFoundException(__('Invalid name'));
+    }
+    if ($this->request->is(array('post', 'put'))) {
+      if ($this->Form->save($this->request->data)) {
+        $this->Session->setFlash(__('The form has been saved.'));
+        return $this->redirect(array('action' => 'index_fadmin'));
+      } else {
+        $this->Session->setFlash(__('The Form could not be saved. Please, try again.'));
+      }
+    }
+  else {
+      $options = array('conditions' => array('Form.' . $this->Form->primaryKey => $id));
+      $this->request->data = $this->Form->find('first', $options);
+      $departments = $this->Form->Department->find('list');
+      $this->set(compact('departments')); 
+    
+    }
+}
+
+public function edit_fcoord($id = null) {
+    if (!$this->Form->exists($id)) {
+      throw new NotFoundException(__('Invalid name'));
+    }
+    if ($this->request->is(array('post', 'put'))) {
+      if ($this->Form->save($this->request->data)) {
+        $this->Session->setFlash(__('The form has been saved.'));
+        return $this->redirect(array('action' => 'index_fcoord'));
+      } else {
+        $this->Session->setFlash(__('The Form could not be saved. Please, try again.'));
+      }
+    }
+  else {
+      $options = array('conditions' => array('Form.' . $this->Form->primaryKey => $id));
+      $this->request->data = $this->Form->find('first', $options);
+          
     }
 }
 
@@ -180,15 +227,52 @@ public function deactivate_fcoord($id = null)
 
 public function create()
 {
- $this->request->onlyAllow('ajax');
- $code = $this->request->query('text');
-if ($this->request->is('get') {
-   $this->Form->create();           
-           $this->request->data['Form']['code'] = $code;
-           $this->Form->save($this->request->data);
-        }
 
+ if ($this->request->is('post')) {
+           $this->Form->create();
+            
+        $form_id=$this->Session->read('form_id');
+        $this->request->data['Form']['id']=$form_id;        
+        //debug($this->request->data);exit();
+         if ($this->Form->save($this->request->data)) {
+                $this->Session->setFlash(__('Form has been added.'));               
+         }else{
+           $this->Session->setFlash(__('Unable to add form.'));
+         }        
+           $attr=$this->request->data['Form']['attribute'];
+           $att_array=explode('-',$attr);
+           $label=$this->request->data['Form']['label'];
+           //debug($this->request->data['Form']['label']);exit();
+           $label_array=explode('-',$label);
+           //debug($label_array);exit(); 
+           $cnt='0';
+           $i='0';
+           foreach ($att_array as $value) {     
 
+                 $this->request->data=$this->Form->Element->find('first',
+                  array('conditions' => array('Element.name' => $value)));
+          
+                 $id=$this->request->data['Element']['id'];
+                
+                 $this->request->data['FormElement']['element_id'] = $id;
+                 $this->request->data['FormElement']['form_id'] = $form_id; 
+                $this->request->data['FormElement']['label'] = $label_array[$i];
+                 
+                 if($id!='16' || $cnt=='0'){ 
+
+                 $this->Form->FormElement->saveMany($this->request->data);
+                 debug($this->request->data);exit(); 
+                 }  
+                 if($id=='16'){
+                 $cnt='1';}   
+                 else{$cnt='0';} 
+
+                 $i++;                    
+           }  
+                                    
+        } 
+  } 
+ 
 
  }
 

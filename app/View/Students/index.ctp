@@ -8,23 +8,23 @@
 			<th><?php echo $this->Paginator->sort('firstname'); ?></th>
 			<th><?php echo $this->Paginator->sort('lastname'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			
-
+			<th><?php echo $this->Paginator->sort('email'); ?></th>			
+			<th><?php echo $this->Paginator->sort('institution_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('department_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($students as $student): ?>
+	<?php foreach ($students as $student): ;?>
 	<tr>
 		<td><?php echo h($student['Student']['id']); ?>&nbsp;</td>
 		<td><?php echo h($student['Student']['firstname']); ?>&nbsp;</td>
 		<td><?php echo h($student['Student']['lastname']); ?>&nbsp;</td>
 		<td><?php echo h($student['User']['username']); ?>&nbsp;</td>
 		<td><?php echo h($student['User']['email']); ?>&nbsp;</td>
+		<td><?php echo h($student['Student']['Institution']['name']); ?>&nbsp;</td>
+		<td><?php echo h($student['Student']['Department']['name']); ?>&nbsp;</td>
 		
 		<td class="actions">
-			<?php echo $this->Html->link(__('', true), array('action' => 'index', $student['Student']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
-
+			
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $student['Student']['id'])); ?>
 			
 		</td>
@@ -45,9 +45,4 @@
 	?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Student'), array('action' => 'add')); ?></li>
-	</ul>
-</div>
+
