@@ -1,7 +1,9 @@
 <div class="row">
           <div class="col-lg-6">
 <div class="institutions form">
+
 	<?php echo $this->Html->script('manage_role');?>
+
 <?php echo $this->Form->create('Category', array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
@@ -12,6 +14,7 @@
 )); ?>
 <fieldset>
 <?php
+
 		$url = $this->Html->url(array(
 										'controller' => 'departments',
 										'plugin' => false,

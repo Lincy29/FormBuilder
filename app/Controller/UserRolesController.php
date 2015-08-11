@@ -44,6 +44,7 @@ public function add_superadmin() {
   unset($this->request->data);  
   $institutions = $this->UserRole->Institution->find('list');
   //debug($institutions);exit;
+
   $departments = [];
   $staffs = [];
   $this->set(compact('institutions', 'departments', 'staffs'));
@@ -100,6 +101,7 @@ public function index_admin() {
     'conditions'=>['UserRole.role_id'=> Configure::read('admin')]);
   $this->set('admins', $this->Paginator->paginate());
 }
+
 public function index_fcoord() {
   $this->loadModel('Setting');
   $data = $this->Setting->find('first', array('recursive' => - 1));
@@ -124,6 +126,7 @@ public function index_fadmin() {
   $this->set('formadmins', $this->Paginator->paginate());
 }
 
+
 public function add_admin() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
       $this->UserRole->create();
@@ -146,6 +149,7 @@ public function add_admin() {
     $staffs = [];
     $this->set(compact('institutions', 'departments', 'staffs','roles'));
 }
+
 
 public function add_fcoord() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
@@ -194,6 +198,7 @@ public function add_fadmin() {
 }
 
 
+
 public function view_admin($id = null)
 {
   if (!$this->UserRole->exists($id)) {
@@ -208,6 +213,7 @@ public function view_admin($id = null)
   );
   $this->set('admin', $this->UserRole->find('first', $options));
 }
+
 public function view_fcoord($id = null)
 {
   if (!$this->UserRole->exists($id)) {
@@ -226,6 +232,7 @@ public function view_fcoord($id = null)
 public function deactivate_admin($id = null)
 {
   if (!$this->UserRole->exists($id)) {
+
       throw new NotFoundException(__('Invalid Role'));
   }
 
@@ -244,6 +251,7 @@ public function deactivate_admin($id = null)
     return $this->redirect(array('controller' => 'user_roles','action' => 'index_admin'));
   }
 }
+
 public function deactivate_fcoord($id = null)
 {
   if (!$this->UserRole->exists()) {
@@ -265,5 +273,6 @@ public function deactivate_fcoord($id = null)
     return $this->redirect(array('controller' => 'user_roles','action' => 'index_fcoord'));
   }
 }
+
 
 }

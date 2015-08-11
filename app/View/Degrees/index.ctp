@@ -4,7 +4,7 @@
 	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('institution_id'); ?></th>
+	<th><?php echo $this->Paginator->sort('institution_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('department_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -13,6 +13,7 @@
 		
 	<tr>
 		<td><?php echo h($degree['Degree']['id']); ?>&nbsp;</td>
+
 		<td><?php echo h($degree['Institution']['name']); ?>&nbsp;</td>
 		<td>
 			<?php echo h($degree['Department']['name']); ?>&nbsp;
@@ -20,9 +21,11 @@
 		</td>
 		<td><?php echo h($degree['Degree']['name']); ?>&nbsp;</td>
 		<td class="actions">
+
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $degree['Degree']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $degree['Degree']['id'])); ?>
 		</td>
+		
 	</tr>
 <?php endforeach; ?>
 	</table>

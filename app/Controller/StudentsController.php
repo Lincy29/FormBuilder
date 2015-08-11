@@ -19,8 +19,10 @@ public function index() {
 
 	}
 
+
 public function add_stu() {
 	$this->Student->User->Behaviors->attach('Tools.Passwordable');
+
 		if ($this->request->is('post')) {
 			$this->Student->create();
 			if ($this->Student->save($this->request->data)) {
@@ -45,6 +47,7 @@ public function add_stu() {
 				   return $this->redirect(array('action' => 'index'));
 			    }
 			  }
+
 			} else {
 				$this->Session->setFlash(__('The Student could not be saved. Please, try again.'));
 			}
@@ -53,6 +56,7 @@ public function add_stu() {
 	 $departments = [];
 	 $degrees = [];
 	 $this->set(compact('institutions', 'departments','degrees'));
+
 }
 
 
@@ -63,10 +67,19 @@ public function edit($id = null) {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Student->save($this->request->data)) {
-				$this->Session->setFlash(__('The Student has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The Student could not be saved. Please, try again.'));
+
+				$id = $this->Student->getLastInsertID();
+                //$this->request->data['User']['staff_id'] = $id;
+
+                $this->request->data['User']['fullname'] =$this->request->data['Staff']['firstname'].$this->request->data['Staff']['lastname'] ;
+
+				
+				if ($this->Student->User->save($this->request->data)){
+				   $this->Session->setFlash(__('The student has been saved.'));
+				   return $this->redirect(array('action' => 'index'));
+			    }else {
+				$this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+
 			}
 		} 
 		else {
@@ -85,5 +98,8 @@ public function edit($id = null) {
 		    $degree = $this->Student->Degree->find('list');
 
 		    $this->set(compact('institutions', 'departments','degree'));
-  }
+
 }
+
+}
+

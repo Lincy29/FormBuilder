@@ -5,6 +5,7 @@ App::uses('AppModel', 'Model');
  *
  */
 class Category extends AppModel {
+
 	 public $validate = [
         
         'institution_id' => [
@@ -33,10 +34,12 @@ class Category extends AppModel {
     ];
 
  public $displayField = 'category_name';
+
  public $belongsTo = ['Institution','Department'];
  public $hasMany= ['Form'];
 
  public function getListByDepartment($catid = null) {
+
 		if (empty($catid)) {
 			return array();
 		}
@@ -45,3 +48,4 @@ class Category extends AppModel {
 		));
 	}
 }
+

@@ -15,6 +15,12 @@
 <?php
 
 echo $this->Form->input('name',array('label'=>'Enter new name:'));
+echo $this->Form->input('institution_id', array(
+	'id' => 'institutions',
+	'empty' => 'Please Select First'));
+echo $this->Form->input('department_id', array(
+	'id' => 'departments',
+	'empty' => 'Please Select First'));
 
 echo $this->Form->input('id');
 echo $this->Form->input('close');

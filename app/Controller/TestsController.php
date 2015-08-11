@@ -22,7 +22,9 @@ public $helpers = array('Html', 'Form', 'Session');
  * @return void
  */
 public function index() {
+
     $this->First->recursive = 0;
+
     $this->set('tests', $this->Paginator->paginate());
  }
 
@@ -34,7 +36,7 @@ public function index() {
             if ($this->Test->save($this->request->data)) {
 
               $this->Session->setFlash(__('Your post has been saved.'));
-              // return $this->redirect(array('action' => 'index'));
+
             }
             else
             $this->Session->setFlash(__('Unable to add your post.'));
@@ -42,7 +44,9 @@ public function index() {
     }
 
   
+
 }/*
+
 public function edit($id = null) {
     if (!$this->Test->exists($id)) {
       throw new NotFoundException(__('Invalid name'));
@@ -56,7 +60,11 @@ public function edit($id = null) {
       }
     }
   else {
+<<<<<<< HEAD
+      $options = array('conditions' => array('Test.' . $this->Test->primaryKey => $id));
+=======
       $options = array('conditions' => array('First.' . $this->Test->primaryKey => $id));
+>>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
       $this->request->data = $this->Test->find('first', $options);
     }
 }

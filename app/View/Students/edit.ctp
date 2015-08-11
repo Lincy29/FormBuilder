@@ -1,5 +1,4 @@
-<div class="row">
-          <div class="col-lg-6">
+
 <div class="students form">
 	
 <?php echo $this->Form->create('Student', array(
@@ -20,6 +19,7 @@
 		echo $this->Form->input('User.email');
 		echo $this->Form->input('institution_id');
 		echo $this->Form->input('department_id'); 
+
 	?>
 <div class="col col-md-9 col-md-offset-3">
 			<?php echo $this->Form->submit('Submit', array(

@@ -18,6 +18,11 @@ $(function() {
               destination.append('<option value="Please Select">Please Select</option>');
               appendData(response.categories, destination);
             }
+            if (response.forms) {
+              destination.empty(),
+              destination.append('<option value="Please Select">Please Select</option>');
+              appendData(response.forms, destination);
+            }
         });
  
         request.fail(function( jqXHR, textStatus ) {
@@ -63,4 +68,29 @@ $(function() {
   		  destination.append('<option value="Select Department First">Select Department First</option>');
   		}
     });
+
+    $('#categories').on('change',function() {
+      var selectedValue = $(this).val(),
+          destination = $('#forms');
+      if(selectedValue != 'Please Select') {
+        targetUrl = $(this).attr('rel') + '?id=' + selectedValue;
+        getData(selectedValue, targetUrl, destination);
+      } else {
+        destination.empty(),
+        destination.append('<option value="Select Category First">Select Category First</option>');
+      }
+    });
+    $('#forms').on('change',function() {
+      var selectedValue = $(this).val(),
+          destination = $('#forms');
+      if(selectedValue != 'Please Select') {
+        targetUrl = $(this).attr('rel') + '?id=' + selectedValue;
+        getData(selectedValue, targetUrl, destination);
+      } else {
+        destination.empty(),
+        destination.append('<option value="Select Category First">Select Category First</option>');
+      }
+    });
+
+
 });

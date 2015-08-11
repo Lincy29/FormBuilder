@@ -1,5 +1,7 @@
 <div class="table-responsive">
+
 <div class="roles index">
+
 <div class="institutions index">
 	<h2><?php echo __('Institutions'); ?></h2>
 	<table cellpadding="0" cellspacing="0" class="table table-striped">
@@ -13,9 +15,11 @@
 		<td><?php echo h($institution['Institution']['id']); ?>&nbsp;</td>
 		<td><?php echo h($institution['Institution']['name']); ?>&nbsp;</td>
 		<td class="actions">
+
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $institution['Institution']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $institution['Institution']['id'])); ?>
 			
+
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -33,5 +37,7 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
+
 </div>
+
 </div>

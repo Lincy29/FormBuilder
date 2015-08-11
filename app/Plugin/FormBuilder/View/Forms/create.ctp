@@ -1,4 +1,3 @@
-
 <!-- <link href="css/custom.css?v=2" rel="stylesheet"> -->
 <?php echo $this->Html->css('custom'); ?>
 
@@ -8,7 +7,7 @@
     $("#submit").click(function(){
        var code=$("#render").val();        
        $("#codetext").val(code);  
-       
+     
       var attr_val= new Array();
       var labels= new Array();
       $("#target .component .form-group :input").each(function() {
@@ -16,12 +15,13 @@
 
           var val_of_label = $(this).attr('name');
           labels.push($('label[for='+val_of_label+']').text());
-          console.log($('label[for='+val_of_label+']').text()); 
+         // console.log($('label[for='val_of_label']').text()); 
           $("#label").val(labels.join("-"));
           $("#attribute").val(attr_val.join("-"));
      });  
 
       $("#target .component .form-group :select").each(function() {
+
           attr_val.push($(this).attr('name'));
           $("#attribute").val(attr_val.join("-"));
      });    
@@ -74,8 +74,6 @@
         </div>
         <!-- / Components -->
 <div>
-  <!-- <textarea id="codetext"> </textarea><br>
-   <button id="fetchcode">OK</button> -->
  <?php
 echo $this->Form->create('Form');
 echo $this->Form->input('code',array('id' => 'codetext','type'=>'hidden'));

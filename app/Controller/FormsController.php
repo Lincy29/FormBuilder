@@ -38,6 +38,7 @@ public function index() {
      
    }
 
+
    public function add_fadmin() {
   
   if ($this->request->is('post')) {
@@ -114,7 +115,6 @@ public function edit_coord($id = null) {
      
     }
 }
-
 public function create()
 {
 
@@ -123,7 +123,8 @@ public function create()
             
         $form_id=$this->Session->read('form_id');
         $this->request->data['Form']['id']=$form_id;        
-         debug($this->request->data);exit();
+
+        // debug($this->request->data);exit();
          if ($this->Form->save($this->request->data)) {
                 $this->Session->setFlash(__('Form has been added.'));               
          }else{
@@ -148,7 +149,6 @@ public function create()
                 $this->request->data['FormElement']['label'] = $label_array[$i];
                  
                  if($id!='16' || $cnt=='0'){          
-                 debug($this->request->data);exit();
                  $this->Form->FormElement->saveMany($this->request->data);
                  }  
                  if($id=='16'){
@@ -159,7 +159,32 @@ public function create()
            }  
                                     
         } 
-  } 
+  }
+
+  public function view_form(){
+
+
+
+ // unset($this->request->data);  
+  $forms = $this->Form->find('list');  
+//debug($forms);
+  ///$forms = [];
+  $this->set(compact('forms')); 
+if ($this->request->is('post')) {
+  $id=$this->request->data['Form']['form_id'];
+
+   
+           $this->Session->write('id',$id);                              
+$this->redirect(array(
+    'controller' => 'forms', 'action' => 'display', '?' => array(
+        'id' => $id
+    )
+));
+
+
+
+}
+
  
 public function view() {
       
@@ -169,5 +194,53 @@ public function view() {
       debug($code);
   }
 }
+
+  } 
+
+
+ 
+ public function list_forms() {
+      $this->request->onlyAllow('ajax');
+    $id = $this->request->query('id');
+    if (!$id) {
+      throw new NotFoundException();
+    }
+
+    $this->disableCache();
+
+    $forms = $this->Form;
+     $this->set(compact('forms'));
+    $this->set('_serialize', array('forms'));
+  }
+
+  public function view($id = null) {
+    if (!$this->Form->exists($id)) {
+      throw new NotFoundException(__('Invalid institution'));
+    }
+    $options = array('conditions' => array('Form.' . $this->Form->primaryKey => $id));
+    $this->set('form', $this->Form->find('first', $options));
+  }
+
+  public function display($id = null)
+  {$this->Form->create();
+    $id=$this->Session->read('id');
+    //debug($id);
+    if (!$this->Form->exists($id)) {
+      throw new NotFoundException(__('Invalid name'));
+    }
+   else
+   {
+    $code = $this->request->data=$this->Form->find('first',
+                     array('conditions' => array('Form.id' => $id),'fields' => array('Form.code')));
+  //debug($code);
+    $this->set('code',$code['Form']['code']);
+   echo html_entity_decode($code['Form']['code']);
+
+   }
+
+  }
+
+}
+
 
 ?>

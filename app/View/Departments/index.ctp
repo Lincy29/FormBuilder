@@ -1,3 +1,4 @@
+
 <div class="departments index">
 	<h2><?php echo __('Departments'); ?></h2>
 	<table cellpadding="0" cellspacing="0" class="table table-striped">
@@ -15,7 +16,9 @@
 		</td>
 		<td><?php echo h($department['Department']['name']); ?>&nbsp;</td>
 		<td class="actions">
+
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $department['Department']['id'])); ?>
+
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $department['Department']['id'])); ?>
 		</td>
 	</tr>

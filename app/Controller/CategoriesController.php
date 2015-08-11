@@ -13,6 +13,7 @@ class CategoriesController extends AppController {
     $this->Category->recursive = -1;
     $this->Paginator->settings = array(
   'page' => 1,
+
   'contain' => ['Institution'=>['fields'=>['name']],'Department'=>['fields'=>['name']]],'fields'=>['id','category_name','recstatus']);
     $this->set('categories', $this->Paginator->paginate());
  }
@@ -25,6 +26,7 @@ class CategoriesController extends AppController {
  }
     public function add() {
   
+
     if ($this->request->is('post')) {
             $this->Category->create();
             if ($this->Category->save($this->request->data)) {
@@ -54,6 +56,7 @@ class CategoriesController extends AppController {
   }
   unset($this->request->data);  
   $institutions = $this->Category->Institution->find('list');
+
   $departments = [];
   $this->set(compact('institutions','departments')); 
 }
@@ -113,6 +116,7 @@ public function edit_category($id = null) {
       
   }
 }
+
 public function edit_category_fadmin($id = null) {
     if (!$this->Category->exists($id)) {
       throw new NotFoundException(__('Invalid name'));
@@ -213,6 +217,7 @@ public function list_categories(){
   $this->disableCache();
   $categories = $this->Category->getListByDepartment($id);
   $this->set(compact('categories'));
+
   $this->set('_serialize',array('categories'));
 }
 

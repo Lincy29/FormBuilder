@@ -3,6 +3,7 @@
 <div class="institutions form">
 	<?php echo $this->Html->script('manage_role');?>
 <?php echo $this->Form->create('Category', array(
+
 	'inputDefaults' => array(
 		'div' => 'form-group',
 		'wrapInput' => false,
@@ -11,17 +12,20 @@
 	'class' => 'well form-horizontal'
 )); ?>
 <fieldset>
+
 		<legend><?php echo __('Add Institution'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 	?>
-	
 <div class="col col-md-9 col-md-offset-3">
+
 			<?php echo $this->Form->submit('Submit', array(
 				'div' => false,
 				'class' => 'btn btn-primary'
 			)); ?>
 			<button type="reset" class="btn btn-default">Cancel</button>
 		</div>
+
 		<fieldset>
 </div>
+

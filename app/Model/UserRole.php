@@ -7,6 +7,7 @@ App::uses('AppModel', 'Model');
  * @property Role $Role
  */
 class UserRole extends AppModel {
+
 	
 
 
@@ -37,6 +38,7 @@ class UserRole extends AppModel {
             ],
         ]      
 				];
+
 
 /**
  * Display field

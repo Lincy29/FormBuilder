@@ -3,6 +3,7 @@
 <div class="tickets form">
 	<?php echo $this->Html->script('manage_category');?>
 
+
 <?php echo $this->Form->create('Form', array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
@@ -43,6 +44,7 @@ echo $this->Form->input('department_id', array(
 	'id' => 'departments',
 	'empty' => $emptyDepartment,
 	'rel' => $urla));
+
 echo $this->Form->input('category_id', array(
 	'id' => 'categories',
 	'empty' => $emptyCategory));

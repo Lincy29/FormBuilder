@@ -65,8 +65,10 @@ class DegreesController extends AppController {
 				$this->Session->setFlash(__('The degree could not be saved. Please, try again.'));
 			}
 		}
+
 		$institutions = $this->Degree->Institution->find('list');  
         $departments = [];
+
 		$this->set(compact('institutions','departments'));
 	}
 
@@ -92,11 +94,13 @@ class DegreesController extends AppController {
 			$options = array('conditions' => array('Degree.' . $this->Degree->primaryKey => $id));
 			$this->request->data = $this->Degree->find('first', $options);
 		}
+
 		
 	  $institutions = $this->Degree->Institution->find('list');
      // $this->set(compact('institutions')); 
       $departments = $this->Degree->Department->find('list');
       $this->set(compact('institutions','departments')); 
+
 	}
 
 /**

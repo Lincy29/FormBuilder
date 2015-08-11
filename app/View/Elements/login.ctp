@@ -10,6 +10,8 @@
           </button>
         <p style="padding-left: 20px;">   <?php echo $this->Html->image('gnulogo.png', array('alt' => 'GNU', 'border' => '0')); ?></p>
         </div>
+
         <h1 style="padding-left:200px;">Dynamic Form Generator</h1>
+
       </div>
     </div>

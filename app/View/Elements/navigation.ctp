@@ -8,6 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+
         <p style="padding-left: 20px;"><?php echo $this->Html->image('gnulogo.png', array('alt' => 'GNU', 'border' => '0')); ?></p>
         </div>
         <h1 style="padding-left:200px;">Dynamic Form Generator</h1>
@@ -19,13 +20,13 @@
                                                         'action' => 'dashboard'));
            ?>
         </li>
-        
+
 
         <li class="dropdown menu-large">
           <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Roles<b class="caret"></b></a>
-          <?php } ?> 
-        <ul class="dropdown-menu megamenu row">
+          <?php } ?>
+         <ul class="dropdown-menu megamenu row">
           <li class="col-sm-3">
             <ul>
               <?php if(Auth::hasRoles(['developer'])) {?>
@@ -48,6 +49,7 @@
 
 
               <?php if(Auth::hasRoles(['developer'])) {?>
+
               <li class="dropdown-header">Manage Super Admins</li>
                   <li>
                     <?php echo $this->Html->link(__("New Super Admin",true),[
@@ -62,6 +64,7 @@
                     'action' => 'index_superadmin']);?>
                   </li>
                   <li class="divider"></li>
+
               <?php } ?>
 
              <?php  if(Auth::hasRoles(['developer','superadmin'])) {?>
@@ -199,11 +202,14 @@
             ?>
            <?php } ?>
            <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
+
              <!-- <li class="dropdown-header">Manage Roles</li>-->
             <?php echo $this->Html->link(__("Form"),array('plugin'=>'form_builder',
+
                                                         'controller' => 'forms',
                                                         'action' => 'add'));
             ?>
+            <li>
            <?php } ?>
            <?php if(Auth::hasRoles(['formcoordinator'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->
@@ -320,13 +326,7 @@
               'action'=>'logout' ,
               'plugin'=>false]); ?>
           </li> 
-         <!-- <li>
-          <?php echo $this->Html->link(__("Category"),array('plugin'=>false,
-                                                        'controller' => 'categories',
-                                                        'action' => 'add_category'));
-           ?>
-        </li>-->
-          
+                  
       </div>
     </div>
 </div>

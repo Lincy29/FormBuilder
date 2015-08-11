@@ -4,7 +4,9 @@
 		<legend><?php echo __('Edit Academic Year'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
+
 		echo $this->Form->input('institution_id');
+
 		echo $this->Form->input('name');
 	?>
 	</fieldset>

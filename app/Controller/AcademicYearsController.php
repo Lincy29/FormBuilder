@@ -56,8 +56,10 @@ public $components = array('Paginator','Session');
 			}
 		}
 
+
 	 $institutions = $this->AcademicYear->Institution->find('list');  
 	 $this->set(compact('institutions','departments', 'categories'));  
+
 	}
 
 /**
@@ -85,6 +87,7 @@ public $components = array('Paginator','Session');
 		 $institutions = $this->AcademicYear->Institution->find('list');
 		 $this->set(compact('institutions'));
 	}
+
 
 
 /**

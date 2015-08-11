@@ -13,6 +13,7 @@
 <fieldset>
 <?php
 //echo $this->Form->create('Category');
+
 echo $this->Form->input('institution_id', array(
 	'id' => 'institutions',
 	'empty' => 'Please Select First'));
@@ -21,6 +22,7 @@ echo $this->Form->input('department_id', array(
 	'empty' => 'Please Select First'));
 echo $this->Form->input('id');
 echo $this->Form->input('category_name',array('label'=>'Enter new Category:'));
+
 //echo $this->Form->end('Submit');
 //echo $this->Form->end('View');
 
@@ -32,5 +34,6 @@ echo $this->Form->input('category_name',array('label'=>'Enter new Category:'));
 			)); ?>
 			<button type="reset" class="btn btn-default">Cancel</button>
 		</div>
-		</fieldset>
+		<fieldset>
 </div>
+

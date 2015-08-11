@@ -4,7 +4,9 @@
 	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+
 			<th><?php echo $this->Paginator->sort('names'); ?></th>
+
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($tests as $test): ?>

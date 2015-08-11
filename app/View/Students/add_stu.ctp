@@ -3,6 +3,7 @@
 <div class="tickets form">
 	<?php echo $this->Html->script('manage_degree');?>
 
+
 <?php echo $this->Form->create('Student', array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
