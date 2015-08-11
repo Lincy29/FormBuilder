@@ -10,7 +10,7 @@
 	'class' => 'well form-horizontal'
     )); ?>
 
-<?php echo $this->Html->script('manage_role');?>
+<?php echo $this->Html->script('manage_category');?>
 <?php
 		$url = $this->Html->url(array(
 		'controller' => 'departments',

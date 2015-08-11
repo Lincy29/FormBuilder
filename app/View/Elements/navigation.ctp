@@ -199,11 +199,13 @@
             ?>
            <?php } ?>
            <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
-             <!-- <li class="dropdown-header">Manage Roles</li>-->
+             <!-- <li class="dropdown-header">Form</li>-->
+             <li>
             <?php echo $this->Html->link(__("Form"),array('plugin'=>false,
                                                         'controller' => 'forms',
                                                         'action' => 'add'));
             ?>
+            <li>
            <?php } ?>
            <?php if(Auth::hasRoles(['formcoordinator'])) {?>
              <!-- <li class="dropdown-header">Manage Roles</li>-->

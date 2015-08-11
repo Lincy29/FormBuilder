@@ -24,14 +24,9 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-<<<<<<< HEAD
+
 	Router::connect('/', array('controller' => 'users', 'action' => 'login'));
-=======
- 
 
-
-Router::connect('/', array('controller' => 'users', 'action' => 'login'));
->>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
 
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
@@ -42,15 +37,12 @@ Router::connect('/create', array('controller' => 'forms', 'action'=> 'create'));
 Router::setExtensions(array('json', 'xml','pdf'));
 Router::parseExtensions('json', 'xml','pdf');
 
-<<<<<<< HEAD
-
-=======
 [
 'plugin' => 'FormBuilder',
 'controller' => 'FormsController',
 'action' => 'add',
 ] ;
->>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

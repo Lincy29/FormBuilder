@@ -2,7 +2,7 @@
           <div class="col-lg-6">
 
 <div class="institutions form">
-	<?php echo $this->Html->script('manage_role');?>
+	<?php echo $this->Html->script('manage_category');?>
 
 <?php echo $this->Form->create('Department', array(
 	'inputDefaults' => array(

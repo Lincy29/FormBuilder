@@ -81,10 +81,6 @@ class RolesController extends AppController {
     'class' => 'alert-danger'
 ));
 			}
-<<<<<<< HEAD
-
-=======
->>>>>>> 8a319f27450e1ffea3c0e639534e228fa5336719
 		} else {
 			$options = array('conditions' => array('Role.' . $this->Role->primaryKey => $id));
 			$this->request->data = $this->Role->find('first', $options);

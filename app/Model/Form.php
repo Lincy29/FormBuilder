@@ -40,7 +40,7 @@ class Form Extends AppModel {
  public $hasMany = ['Element','FormElement'];
 
 
-public $displayField='id';
+public $displayField='name';
 
  public function getListByCategories($aid = null) {
     if (empty($aid)) {
@@ -50,6 +50,8 @@ public $displayField='id';
       'conditions' => array($this->alias . '.category_id' => $aid),
     ));
   }
+
+  
 
 }
 
