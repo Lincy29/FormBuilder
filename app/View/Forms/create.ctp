@@ -16,10 +16,10 @@
           var val_of_label = $(this).attr('name');
           labels.push($('label[for='+val_of_label+']').text());
          // console.log($('label[for='val_of_label']').text()); 
-          $("#label").val(labels.join("-"));
+          $("#labeltext").val(labels.join("-"));
           $("#attribute").val(attr_val.join("-"));
      });  
-
+      
       $("#target .component .form-group :select").each(function() {
 
           attr_val.push($(this).attr('name'));
@@ -78,7 +78,7 @@
 echo $this->Form->create('Form');
 echo $this->Form->input('code',array('id' => 'codetext','type'=>'hidden'));
 echo $this->Form->input('attribute',array('id' => 'attribute','type'=>'hidden'));
-echo $this->Form->input('label',array('id' => 'label','type'=>'hidden'));
+echo $this->Form->input('label',array('id' => 'labeltext','type'=>'hidden'));
 echo $this->Form->submit('Submit', array(
               'id' => 'submit',
         'div' => false,

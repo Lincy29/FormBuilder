@@ -1,4 +1,3 @@
-<!-- <link href="css/custom.css?v=2" rel="stylesheet"> -->
 <?php echo $this->Html->css('custom'); ?>
 
  <script type="text/javascript">
@@ -16,7 +15,8 @@
           var val_of_label = $(this).attr('name');
           labels.push($('label[for='+val_of_label+']').text());
          // console.log($('label[for='val_of_label']').text()); 
-          $("#label").val(labels.join("-"));
+          //$("#labeltext").val(labels.join("-"));
+          $("#labeltext").val(labels);
           $("#attribute").val(attr_val.join("-"));
      });  
 
@@ -78,7 +78,7 @@
 echo $this->Form->create('Form');
 echo $this->Form->input('code',array('id' => 'codetext','type'=>'hidden'));
 echo $this->Form->input('attribute',array('id' => 'attribute','type'=>'hidden'));
-echo $this->Form->input('label',array('id' => 'label','type'=>'hidden'));
+echo $this->Form->input('label',array('id' => 'labeltext','type'=>'hidden'));
 echo $this->Form->submit('Submit', array(
               'id' => 'submit',
         'div' => false,

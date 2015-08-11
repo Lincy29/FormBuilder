@@ -114,12 +114,12 @@ public function create()
 {
 
  if ($this->request->is('post')) {
-           $this->Form->create();
-            
+        $this->Form->create();            
         $form_id=$this->Session->read('form_id');
         $this->request->data['Form']['id']=$form_id;        
 
-        // debug($this->request->data);exit();
+        debug($this->request->data);exit();
+
          if ($this->Form->save($this->request->data)) {
                 $this->Session->setFlash(__('Form has been added.'));               
          }else{
@@ -192,8 +192,6 @@ public function view() {
      $this->set(compact('forms'));
     $this->set('_serialize', array('forms'));
   }
-
-
 
   public function display($id = null)
   {
