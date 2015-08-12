@@ -6,7 +6,7 @@ class Form extends FormBuilderAppModel {
  public $belongsTo = ['Institution','Department','Category'];
   public $hasMany = ['Element','FormElement'];
 
-public $displayField='id';
+public $displayField='name';
 
  public function getListByCategories($aid = null) {
     if (empty($aid)) {

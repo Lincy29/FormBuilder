@@ -252,9 +252,31 @@ public function deactivate_admin($id = null)
   }
 }
 
+public function deactivate_fadmin($id = null)
+{
+  if (!$this->UserRole->exists($id)) {
+      throw new NotFoundException(__('Invalid Role'));
+  }
+
+  if ($this->request->is(array('post','put'))) {
+    $this->request->data['UserRole']['id'] = $id;
+    $this->request->data['UserRole']['recstatus'] = 0;
+    if ($this->UserRole->save($this->request->data, true, array('id','recstatus'))) {
+      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    } else {
+      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    }
+    return $this->redirect(array('controller' => 'user_roles','action' => 'index_fadmin'));
+  }
+}
+
 public function deactivate_fcoord($id = null)
 {
-  if (!$this->UserRole->exists()) {
+  if (!$this->UserRole->exists($id)) {
       throw new NotFoundException(__('Invalid Role'));
   }
 

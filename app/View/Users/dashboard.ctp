@@ -23,7 +23,7 @@
     $this->Html->image('FormLogo.png', ['alt' => 'CREATE_FORM']),
 
     [
-       // 'plugin' => 'support_ticket_system',
+        'plugin' => 'form_builder',
         'controller' => 'forms',
         'action' => 'add',
     ],['escape' => false]
@@ -43,8 +43,8 @@
     $this->Html->image('viewresponse.png', ['alt' => 'viewresponse']),
 
     [
-        'plugin' => 'feedback_system',
-        'controller' => 'pages',
+        'plugin' => 'form_builder',
+        'controller' => 'forms',
         'action' => 'dashboard',
     ],['escape' => false]
 );

@@ -12,6 +12,7 @@
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($formcoordinators as $formcordinator): ?>
+	<?php if($formcordinator['UserRole']['recstatus'] == 1){ ?>
 	<tr>
 
 		<td>
@@ -30,12 +31,13 @@
 			<?php echo $this->Html->link(__('', true), array('action' => 'view_fcoord', $formcordinator['UserRole']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
 			<?php 
 			if($formcordinator['UserRole']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_admin_developer', $formcordinator['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $formcordinator['UserRole']['id'])); 
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_fcoord', $formcordinator['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $formcordinator['UserRole']['id'])); 
 			}
 		?>
 		
 		</td>
 	</tr>
+<?php } ?>
 <?php endforeach; ?>
 	</table>
 	<p>

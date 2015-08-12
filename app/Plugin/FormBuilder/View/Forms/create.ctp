@@ -3,28 +3,25 @@
  <script type="text/javascript">
      
  $(document).ready(function(){
-    $("#submit").click(function(){
-       var code=$("#render").val();        
-       $("#codetext").val(code);  
+    $("#submit").on('click',function(){
+       var code = $("#render").val();
+       console.log(code);
+       $("#codetext").val(code);
      
       var attr_val= new Array();
-      var labels= new Array();
+      var labels = new Array();
       $("#target .component .form-group :input").each(function() {
           attr_val.push($(this).attr('name'));
-
           var val_of_label = $(this).attr('name');
-          labels.push($('label[for='+val_of_label+']').text());
-         // console.log($('label[for='val_of_label']').text()); 
-          //$("#labeltext").val(labels.join("-"));
-          $("#labeltext").val(labels);
+          labels.push($('#target .component .form-group label[for='+val_of_label+']').text());
+     });
+          $("#labeltext").val(labels.join("-"));
           $("#attribute").val(attr_val.join("-"));
-     });  
 
-      $("#target .component .form-group :select").each(function() {
-
+     $("#target .component .form-group :select").each(function() {
           attr_val.push($(this).attr('name'));
           $("#attribute").val(attr_val.join("-"));
-     });    
+     }); 
        
     });
   });
