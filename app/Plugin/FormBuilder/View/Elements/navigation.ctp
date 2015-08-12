@@ -20,7 +20,7 @@
            ?>
         </li>
         
-
+        <!--
         <li class="dropdown menu-large">
           <?php if(Auth::hasRoles(['developer','superadmin','admin'])) {?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Roles<b class="caret"></b></a>
@@ -127,7 +127,7 @@
             </ul>
           </li>
         </ul>
-      </li>
+      </li> -->
       <li class="dropdown menu-large">
           <?php if(Auth::hasRoles(['developer','superadmin','admin','user'])) {?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category<b class="caret"></b></a>
@@ -286,6 +286,7 @@
             </li>
           </ul>
         </li>
+        <!--
         <li class="dropdown menu-large">
           <?php if(Auth::hasRoles(['developer'])) {?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Staff<b class="caret"></b></a>
@@ -310,7 +311,7 @@
               </ul>
             </li>
           </ul>
-        </li>
+        </li> -->
          
           <li>
               <?php echo $this->Html->link(__("Logout",true),[
