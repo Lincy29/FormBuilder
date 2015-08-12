@@ -1,5 +1,4 @@
 
-</script>
 <div class="row">
           <div class="col-lg-6">
 <div class="tickets form">
@@ -52,7 +51,6 @@ echo $this->Form->input('category_id', array(
 	'empty' => $emptyCategory));
 
 echo $this->Form->input('close');
-
 echo $this->Form->end('Submit');
 
 
