@@ -57,7 +57,7 @@ public function index() {
            $this->Form->create();
             if ($this->Form->save($this->request->data)) {
                 $this->Session->setFlash(__('New form has been added.'));
-                return $this->redirect(array('action' => 'create'));
+                 return $this->redirect('/create');
             }
             else{
            $this->Session->setFlash(__('Unable to add form.'));
@@ -76,7 +76,7 @@ public function index() {
            $this->Form->create();
             if ($this->Form->save($this->request->data)) {
                 $this->Session->setFlash(__('New form has been added.'));
-                return $this->redirect(array('action' => 'create'));
+                return $this->redirect('/create');
             }
             else{
            $this->Session->setFlash(__('Unable to add form.'));

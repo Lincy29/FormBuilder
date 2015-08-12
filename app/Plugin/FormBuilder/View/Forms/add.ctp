@@ -64,7 +64,7 @@ echo $this->Form->input('category_id', array(
 	'id' => 'categories',
 	'empty' => $emptyCategory));
 
-echo $this->Form->input('close', array('class' => 'form-control datepicker','data-date-format' => 'yyyy/mm/dd'	, 'type' => 'text',	'div' => 'form-group'));
+echo $this->Form->input('close_date', array('class' => 'form-control datepicker','data-date-format' => 'yyyy/mm/dd'	, 'type' => 'text',	'div' => 'form-group'));
 echo $this->Form->end('Submit');
 
 
