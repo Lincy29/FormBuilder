@@ -8,7 +8,7 @@ public function index() {
     $this->Form->recursive = -1;
    $this->Paginator->settings = array(
   'page' => 1,
-  'contain' => ['Institution'=>['fields'=>['name']],'Category'=>['fields'=>['category_name']],'Department'=>['fields'=>['name']]],'fields'=>['id','name','close','recstatus']);
+  'contain' => ['Institution'=>['fields'=>['name']],'Category'=>['fields'=>['category_name']],'Department'=>['fields'=>['name']]],'fields'=>['id','name','close_date','recstatus']);
     $this->set('forms', $this->Paginator->paginate());
  }
 
@@ -16,7 +16,7 @@ public function index() {
     $this->Form->recursive = -1;
    $this->Paginator->settings = array(
   'page' => 1,
-  'contain' => ['Department'=>['fields'=>['name']],'Category'=>['fields'=>['category_name']]],'fields'=>['id','name','close','recstatus']);
+  'contain' => ['Department'=>['fields'=>['name']],'Category'=>['fields'=>['category_name']]],'fields'=>['id','name','close_date','recstatus']);
     $this->set('forms', $this->Paginator->paginate());
  }
 
@@ -24,7 +24,7 @@ public function index() {
     $this->Form->recursive = -1;
    $this->Paginator->settings = array(
   'page' => 1,
-  'contain' => ['Category'=>['fields'=>['category_name']]],'fields'=>['id','name','close','recstatus']);
+  'contain' => ['Category'=>['fields'=>['category_name']]],'fields'=>['id','name','close_date','recstatus']);
     $this->set('forms', $this->Paginator->paginate());
  }
     public function add() {
@@ -170,6 +170,52 @@ public function deactivate_admin_form($id = null)
       ));
     }
     return $this->redirect(array('controller' => 'forms','action' => 'index'));
+  }
+}
+
+public function deactivate_fadmin_form($id = null)
+{
+ 
+  if (!$this->Form->exists($id)) {
+      throw new NotFoundException(__('Invalid Form'));
+  }
+
+  if ($this->request->is(array('post','put'))) {
+    $this->request->data['Form']['id'] = $id;
+    $this->request->data['Form']['recstatus'] = 0;
+    if ($this->Form->save($this->request->data, true, array('id','recstatus'))) {
+      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    } else {
+      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    }
+    return $this->redirect(array('controller' => 'forms','action' => 'index_fadmin'));
+  }
+}
+
+public function deactivate_fcoord_form($id = null)
+{
+  
+  if (!$this->Form->exists($id)) {
+      throw new NotFoundException(__('Invalid Form'));
+  }
+
+  if ($this->request->is(array('post','put'))) {
+    $this->request->data['Form']['id'] = $id;
+    $this->request->data['Form']['recstatus'] = 0;
+    if ($this->Form->save($this->request->data, true, array('id','recstatus'))) {
+      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    } else {
+      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
+        'class' => 'alert-success'
+      ));
+    }
+    return $this->redirect(array('controller' => 'forms','action' => 'index_fcoord'));
   }
 }
 

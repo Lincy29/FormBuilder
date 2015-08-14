@@ -19,7 +19,7 @@
 		<td><?php echo h($form['Institution']['name']); ?>&nbsp;</td>
 		<td><?php echo h($form['Department']['name']); ?>&nbsp;</td> 	
 		<td><?php echo h($form['Category']['category_name']); ?>&nbsp;</td>	
-		<td><?php echo h($form['Form']['close']); ?>&nbsp;</td>
+		<td><?php echo h($form['Form']['close_date']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $form['Form']['id'])); ?>
 			<?php 
