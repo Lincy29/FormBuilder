@@ -1,10 +1,10 @@
 <?php
-App::uses('AppModel', 'Model');
+App::uses('FormBuilderAppModel','FormBuilder.Model');
 /**
  * Role Model
  *
  */
-class FormElement extends AppModel {
+class FormElement extends FormBuilderAppModel {
 
  
 

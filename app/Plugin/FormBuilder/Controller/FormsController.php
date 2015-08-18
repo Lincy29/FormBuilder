@@ -1,6 +1,6 @@
 <?php
-App::uses('AppController','Controller');
-class FormsController extends AppController {
+App::uses('FormBuilderAppController','FormBuilder.Controller');
+class FormsController extends FormBuilderAppController {
      
 public $components = array('Paginator','Session');
 
@@ -358,10 +358,13 @@ public function view() {
     }
    else
    {
+    //$this->request->data = $this->Form->find('first');
+    //$temp=$this->request->data['Form']['response'];
+    debug($this->request->data);
     $code = $this->request->data=$this->Form->find('first',
                      array('conditions' => array('Form.id' => $id),'fields' => array('Form.code')));
     $this->set('code',$code['Form']['code']);
-   //echo html_entity_decode($code['Form']['code']);
+    
    }
 
   }

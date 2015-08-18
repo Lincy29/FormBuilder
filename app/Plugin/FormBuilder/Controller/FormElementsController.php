@@ -1,6 +1,6 @@
 <?php
-App::uses('AppController','Controller');
-class FormElementsController extends AppController {
+App::uses('FormBuilderAppController','FormBuilder.Controller');
+class FormElementsController extends FormBuilderAppController {
      
 
 }
