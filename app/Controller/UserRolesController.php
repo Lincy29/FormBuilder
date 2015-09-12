@@ -41,7 +41,7 @@ public function index_admin() {
   $this->set('admins', $this->Paginator->paginate());
 }
 
-public function index_fcoord() {
+public function index_formcoord() {
   $this->loadModel('Setting');
   $data = $this->Setting->find('first', array('recursive' => - 1));
   $pagination_value = $data['Setting']['pagination_value'];
@@ -53,7 +53,7 @@ public function index_fcoord() {
   $this->set('formcoordinators', $this->Paginator->paginate());
 }
 
-public function index_fadmin() {
+public function index_formadmin() {
   $this->loadModel('Setting');
   $data = $this->Setting->find('first', array('recursive' => - 1));
   $pagination_value = $data['Setting']['pagination_value'];
@@ -118,7 +118,7 @@ public function add_admin() {
 }
 
 
-public function add_fcoord() {
+public function add_formcoord() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
       $this->UserRole->create();
       $staff_id = $this->request->data['UserRole']['staff_id']; 
@@ -128,7 +128,7 @@ public function add_fcoord() {
       if($this->UserRole->save($this->request->data)){
             $this->Session->setFlash(__('The  Form Coordinator has been saved.'), 'alert', array(
           'class' => 'alert-success'));
-            return $this->redirect(array('controller' => 'user_roles','action' => 'index_fcoord'));
+            return $this->redirect(array('controller' => 'user_roles','action' => 'index_formcoord'));
       } else  {
            $this->Session->setFlash(__('The  Form Coordinator could not be saved. Please, try again.'), 'alert', array(
             'class' => 'alert-success'));
@@ -141,7 +141,7 @@ public function add_fcoord() {
     $this->set(compact('institutions', 'departments', 'staffs','roles'));
 }
 
-public function add_fadmin() {
+public function add_formadmin() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
       $this->UserRole->create();
       $staff_id = $this->request->data['UserRole']['staff_id']; 
@@ -151,7 +151,7 @@ public function add_fadmin() {
       if($this->UserRole->save($this->request->data)){
             $this->Session->setFlash(__('The  Form Admin has been saved.'), 'alert', array(
           'class' => 'alert-success'));
-            return $this->redirect(array('controller' => 'user_roles','action' => 'index_fadmin'));
+            return $this->redirect(array('controller' => 'user_roles','action' => 'index_formadmin'));
       } else  {
            $this->Session->setFlash(__('The  Form Admin could not be saved. Please, try again.'), 'alert', array(
             'class' => 'alert-success'));
@@ -197,7 +197,7 @@ public function view_admin($id = null)
   $this->set('admin', $this->UserRole->find('first', $options));
 }
 
-public function view_fadmin($id = null)
+public function view_formadmin($id = null)
 {
   if (!$this->UserRole->exists($id)) {
     throw new NotFoundException(__('Invalid id'));
@@ -212,7 +212,7 @@ public function view_fadmin($id = null)
   $this->set('formadmin', $this->UserRole->find('first', $options));
 }
 
-public function view_fcoord($id = null)
+public function view_formcoord($id = null)
 {
   if (!$this->UserRole->exists($id)) {
     throw new NotFoundException(__('Invalid id'));

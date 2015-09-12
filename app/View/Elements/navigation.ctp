@@ -94,7 +94,7 @@
                     <?php echo $this->Html->link(__("New FormAdmin",true),[
                     'plugin'=>false,
                     'controller' => 'user_roles', 
-                    'action' => 'add_fadmin']); ?>
+                    'action' => 'add_formadmin']); ?>
                   </li>
               <?php } ?>
 
@@ -103,7 +103,7 @@
                 <?php echo $this->Html->link(__("View FormAdmins",true),[
                 'plugin'=>false,
                 'controller' => 'user_roles', 
-                'action' => 'index_fadmin']);?>
+                'action' => 'index_formadmin']);?>
               </li>
               <li class="divider"></li>
               <?php } ?>
@@ -116,7 +116,7 @@
                     <?php echo $this->Html->link(__("New FormCoordinator",true),[
                     'plugin'=>false,
                     'controller' => 'user_roles', 
-                    'action' => 'add_fcoord']); ?>
+                    'action' => 'add_formcoord']); ?>
                   </li>
               <?php } ?>
 
@@ -125,7 +125,7 @@
                 <?php echo $this->Html->link(__("View FormCoordinators",true),[
                 'plugin'=>false,
                 'controller' => 'user_roles', 
-                'action' => 'index_fcoord']);?>
+                'action' => 'index_formcoord']);?>
               </li>
               
               <?php } ?>
@@ -163,13 +163,13 @@
                     <?php echo $this->Html->link(__("New Category",true),[
                       'plugin'=>false,
                       'controller' => 'categories', 
-                      'action' => 'add_category_fadmin']); ?>
+                      'action' => 'add_category_formadmin']); ?>
                 </li>
                 <li>
                     <?php echo $this->Html->link(__("View Category",true),[
                       'plugin'=>false,
                       'controller' => 'categories', 
-                      'action' => 'index_category_fadmin']); ?>
+                      'action' => 'index_category_formadmin']); ?>
                 </li>
                 <?php } ?>
 
