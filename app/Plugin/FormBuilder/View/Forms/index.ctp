@@ -24,7 +24,7 @@
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $form['Form']['id'])); ?>
 			<?php 
 			if($form['Form']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_admin_form', $form['Form']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $form['Form']['id'])); 
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate', $form['Form']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $form['Form']['id'])); 
 			}
 		?>
 		</td>

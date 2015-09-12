@@ -150,7 +150,7 @@ public function edit_fcoord($id = null) {
     }
 }
 
-public function deactivate_admin_form($id = null)
+public function deactivate($id = null)
 {
   //debug($this->Category->exists());exit();
   if (!$this->Form->exists($id)) {
@@ -173,98 +173,7 @@ public function deactivate_admin_form($id = null)
   }
 }
 
-public function deactivate_fadmin_form($id = null)
-{
- 
-  if (!$this->Form->exists($id)) {
-      throw new NotFoundException(__('Invalid Form'));
-  }
-
-  if ($this->request->is(array('post','put'))) {
-    $this->request->data['Form']['id'] = $id;
-    $this->request->data['Form']['recstatus'] = 0;
-    if ($this->Form->save($this->request->data, true, array('id','recstatus'))) {
-      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    } else {
-      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    }
-    return $this->redirect(array('controller' => 'forms','action' => 'index_fadmin'));
-  }
-}
-
-public function deactivate_fcoord_form($id = null)
-{
-  
-  if (!$this->Form->exists($id)) {
-      throw new NotFoundException(__('Invalid Form'));
-  }
-
-  if ($this->request->is(array('post','put'))) {
-    $this->request->data['Form']['id'] = $id;
-    $this->request->data['Form']['recstatus'] = 0;
-    if ($this->Form->save($this->request->data, true, array('id','recstatus'))) {
-      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    } else {
-      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    }
-    return $this->redirect(array('controller' => 'forms','action' => 'index_fcoord'));
-  }
-}
-
-public function deactivate_fadmin($id = null)
-{
-  //debug($this->Category->exists());exit();
-  if (!$this->Form->exists($id)) {
-      throw new NotFoundException(__('Invalid Form'));
-  }
-
-  if ($this->request->is(array('post','put'))) {
-    $this->request->data['Form']['id'] = $id;
-    $this->request->data['Form']['recstatus'] = 0;
-    if ($this->Form->save($this->request->data, true, array('id','recstatus'))) {
-      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    } else {
-      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    }
-    return $this->redirect(array('controller' => 'forms','action' => 'index_fadmin'));
-  }
-}
-
-public function deactivate_fcoord($id = null)
-{
-  //debug($this->Category->exists());exit();
-  if (!$this->Form->exists($id)) {
-      throw new NotFoundException(__('Invalid Form'));
-  }
-
-  if ($this->request->is(array('post','put'))) {
-    $this->request->data['Form']['id'] = $id;
-    $this->request->data['Form']['recstatus'] = 0;
-    if ($this->Form->save($this->request->data, true, array('id','recstatus'))) {
-      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    } else {
-      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    }
-    return $this->redirect(array('controller' => 'forms','action' => 'index_fcoord'));
-  }
-}
-
+//The drag and drop interface
 public function create()
 {
 
@@ -311,7 +220,7 @@ public function create()
                                     
         } 
   }
-
+// Here selection for the form to be displayed is done
   public function view_form(){
 
   $forms = $this->Form->find('list');  
@@ -327,28 +236,7 @@ public function create()
 
 }
 }
-
- 
-public function view() {
-      
-      $code = $this->Form->find('all', array('conditions' => array('Form.code !=' => 'null'),
-                                             'fields' => array('Form.code')));
-     
-      debug($code);
-  }
- 
- public function list_forms() {
-      $this->request->onlyAllow('ajax');
-    $id = $this->request->query('id');
-    if (!$id) {
-      throw new NotFoundException();
-    }
-    $this->disableCache();
-    $forms = $this->Form;
-     $this->set(compact('forms'));
-    $this->set('_serialize', array('forms'));
-  }
-
+//Display the form selected in view_form
   public function display($id = null)
   {
     $this->Form->create();
@@ -358,8 +246,6 @@ public function view() {
     }
    else
    {
-    //$this->request->data = $this->Form->find('first');
-    //$temp=$this->request->data['Form']['response'];
     debug($this->request->data);
     $code = $this->request->data=$this->Form->find('first',
                      array('conditions' => array('Form.id' => $id),'fields' => array('Form.code')));

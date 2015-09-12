@@ -12,6 +12,7 @@
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($superadmins as $superadmin): ?>
+	<?php if($superadmin['UserRole']['recstatus'] == 1){ ?>
 	<tr>
 
 		<td>
@@ -30,13 +31,16 @@
 			<?php echo $this->Html->link(__('', true), array('action' => 'view_superadmin', $superadmin['UserRole']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
 			<?php 
 			if($superadmin['UserRole']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_superadmin', $superadmin['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $superadmin['UserRole']['id'])); 
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate', $superadmin['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $superadmin['UserRole']['id'])); 
 			}
 		?>
 		
 		</td>
 	</tr>
+	<?php } ?>
+
 <?php endforeach; ?>
+
 	</table>
 	<p>
 	<?php

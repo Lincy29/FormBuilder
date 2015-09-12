@@ -14,7 +14,7 @@
 
 
 <fieldset>
-		<legend><?php echo __('Manage Various Form Coordinators'); ?></legend>
+		<legend><?php echo __('Manage Various Form Admins'); ?></legend>
 		<?php
 		$url             = $this->Html->url(array('controller' => 'departments','plugin'=>false,
 'action' => 'list_departments',

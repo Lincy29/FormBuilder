@@ -4,6 +4,9 @@
  <script type="text/javascript">
      
  $(document).ready(function(){
+  
+  $("#target ").html("hello<b>world</b>");
+
     $("#submit").on('click',function(){
        var code = $("#render").val();
        console.log(code);
@@ -28,7 +31,6 @@
   });
 
  </script>
-
 
 <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
