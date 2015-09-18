@@ -1,13 +1,12 @@
 
+
 <?php echo $this->Html->css('custom'); ?>
 
  <script type="text/javascript">
      
  $(document).ready(function(){
   
-  $("#target ").html("hello<b>world</b>");
-
-    $("#submit").on('click',function(){
+     $("#submit").on('click',function(){
        var code = $("#render").val();
        console.log(code);
        $("#codetext").val(code);

@@ -182,9 +182,7 @@ public function create()
         $form_id=$this->Session->read('form_id');
         $this->request->data['Form']['id']=$form_id;        
 
-       //debug($this->request->data);exit();
-
-         if ($this->Form->save($this->request->data)) {
+        if ($this->Form->save($this->request->data)) {
                 $this->Session->setFlash(__('Form has been added.'));               
          }else{
            $this->Session->setFlash(__('Unable to add form.'));
@@ -198,10 +196,9 @@ public function create()
            $i='0';
            foreach ($att_array as $value) {     
 
-                     $this->request->data=$this->Form->Element->find('first',
-                     array('conditions' => array('Element.name' => $value)));
+                 $this->request->data=$this->Form->Element->find('first',
+                 array('conditions' => array('Element.name' => $value)));
           
-                 
                  $id=$this->request->data['Element']['id'];
                 
                  $this->request->data['FormElement']['element_id'] = $id;
@@ -246,9 +243,8 @@ public function create()
     }
    else
    {
-    debug($this->request->data);
     $code = $this->request->data=$this->Form->find('first',
-                     array('conditions' => array('Form.id' => $id),'fields' => array('Form.code')));
+    array('conditions' => array('Form.id' => $id),'fields' => array('Form.code')));
     $this->set('code',$code['Form']['code']);
     
    }
