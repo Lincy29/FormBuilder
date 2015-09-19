@@ -112,4 +112,20 @@ class DepartmentsController extends AppController {
 		$this->set(compact('departments'));
 		$this->set('_serialize', array('departments'));
 	}
+
+	public function list_departments_angular() {
+    	
+		$id = $this->request->query('id');
+		if (!$id) {
+			throw new NotFoundException();
+		}
+		$this->disableCache();
+
+		$departments = $this->Department->getListByInstitution($id);
+		$departments = Set::map($departments);
+		$this->set(array(
+            'departments' => $departments,
+            '_serialize' => array('departments')
+        ));
+	}
 }
