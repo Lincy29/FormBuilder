@@ -179,4 +179,20 @@ public function list_categories(){
   $this->set('_serialize',array('categories'));
 }
 
+public function list_categories_angular() {
+     
+     $id = $this->request->query('id');
+        if (!$id) {
+      throw new NotFoundException();
+    }
+    $this->disableCache();
+
+    $categories = $this->Category->getListByDepartment($id);
+    $categories = Set::map($categories);
+    $this->set(array(
+            'categories' => $categories,
+            '_serialize' => array('categories')
+        ));
+  }
+
 }

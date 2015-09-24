@@ -255,6 +255,14 @@ public function form(){
   
 }
 
+public function form1(){
+  
+}
+
+
+public function form2(){
+  
+}
 
 }
 
