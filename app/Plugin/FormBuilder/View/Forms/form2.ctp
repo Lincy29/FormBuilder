@@ -10,7 +10,7 @@ echo $this->Html->script('FormBuilder.ui.js');
     <script type="text/javascript">
         var app = angular.module('MyApp', [])
         app.controller('MyController', function ($scope) {
-            $scope.Fields = [{
+            $scope.fields = [{
                 Id: 1,
                 Name: 'TextBox'
             }, {
@@ -32,13 +32,10 @@ echo $this->Html->script('FormBuilder.ui.js');
                 Id: 7,
                 Name: 'Password'
             }];
-
-     $scope.newField = function(){ 
-       
-      } 
-           
+ 
         });
     </script>
+
 <div ng-app="MyApp" ng-controller="MyController"> 
 <div class="row"> 
 <div class="col-lg-8"> 
@@ -50,15 +47,16 @@ echo $this->Html->script('FormBuilder.ui.js');
           <h3><label for="FormProperties">Form Properties</label></h3> <br>
 
             <label for="FormName">Form Name</label> 
-                <input type = "text" value = "" class="form-control"><br>
+                <input type = "text" class="form-control"><br>
 
           <h3><label for="FormFields">Form Fields</label></h3> <br>
 
             <label for="Fields">Fields</label> 
    
-        <select id="fields" class="form-control" ng-model="Fields" ng-options="field.Id as field.Name for field in Fields" ng-change="newField()">
+        <select id="fields" class="form-control" ng-model="field_id" ng-options="field.Id as field.Name for field in fields">
+        <option value="">Select one</option>
         </select>
-        <button class="btn btn-primary" id="department" type="button" >ADD</button>
+        <button class="btn btn-primary" id="department" type="button">ADD</button>
       </fieldset> 
   </form> 
 </div> 
