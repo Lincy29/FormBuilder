@@ -21,7 +21,7 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
                 Name: 'TextBox'
             }, {
                 Id: 2,
-                Name: 'Checkbox'
+                Name: 'CheckBox'
             }, {
                 Id: 3,
                 Name: 'Radio'
@@ -61,6 +61,42 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
         };
 
         $scope.form.form_fields.push(newField);
+    }
+
+    $scope.showAddOptions = function (field){
+        if(field.field_type == "Radio" || field.field_type == "CheckBox")
+            return true;
+        else
+            return false;
+    }
+
+    $scope.addOption = function (field){
+        if(!field.field_options)    // field_options array hai jo if null(i.e 0) hai toh create new array????
+            field.field_options = new Array();
+
+        var lastOptionID = 0;
+
+        if(field.field_options[field.field_options.length-1])
+            lastOptionID = field.field_options[field.field_options.length-1].option_id;
+
+        var option_id = lastOptionID + 1;
+
+        var newOption = {
+            "option_id" : option_id,
+            "option_title" : "Option " + option_id,
+            "option_value" : option_id
+        };
+
+        field.field_options.push(newOption);
+    }
+
+    $scope.deleteOption = function (field, option){
+        for(var i = 0; i < field.field_options.length; i++){
+            if(field.field_options[i].option_id == option.option_id){
+                field.field_options.splice(i, 1);// 1st parameter i is starting index, 2nd parameter denotes upto howmany elements you want to remove
+                break;
+            }
+        }
     }
 
     });
@@ -109,17 +145,17 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
                         <div class="span2">Field Default Value:</div>
                         <div class="span4"><input type="text" ng-model="field.field_value" value="{{field.field_value}}"></div>
                     </div>
-                   <!-- <div class="row" ng-show="showAddOptions(field)">
+                    <div class="row" ng-show="showAddOptions(field)">
                         <div class="span2">Field Options:</div>
                         <div class="span6">
                             <div ng-repeat="option in field.field_options">
                                 <input type="text" ng-model="option.option_title" value="{{option.option_title}}">
-                                <a class="btn btn-danger btn-mini right" type="button" ng-click="deleteOption(field, option)"><i class="icon-minus icon-white"></i></a>
+                                <a class="btn btn-danger btn-mini right" type="button" ng-click="deleteOption(field, option)"><i class="glyphicon glyphicon-remove"></i></a>
                                 <span class="label label-inverse">Value: {{ option.option_value }}</span>
                             </div>
                             <button class="btn btn-primary btn-small" type="button" ng-click="addOption(field)"><i class="icon-plus icon-white"></i> Add Option</button>
                         </div>
-                    </div> -->
+                    </div> 
 
                     <div class="clear"></div> <hr>
 
