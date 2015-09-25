@@ -66,8 +66,8 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => '1234',
-		'database' => 'gnu',
+		'password' => 'bijal123',
+		'database' => 'cake',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
@@ -77,8 +77,8 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => '1234',
-		'database' => 'gnu',
+		'password' => 'bijal123',
+		'database' => 'cake',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

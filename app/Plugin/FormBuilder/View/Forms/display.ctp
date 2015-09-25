@@ -1,16 +1,16 @@
 <script type="text/javascript">
+var inputs = new Array(); 
 $(document).ready(function(){
+
     $("#singlebutton").on('click',function(){
-          // var value= $("#textinput").val();
-          // console.log(value); 
-          var inputs = new Array(); 
-          $(".form-horizontal :input").each(function() {
-          // var value = $(this).val();
-           inputs.push($(this).val();
+          $(".form-horizontal .form-group :input").each(function() {
+          
+           inputs.push($(this).val());
            console.log(inputs);
      }); 
-        $("#response").val(inputs.join("-")); 
+         
     });
+    $("#response").val(inputs.join("-"));
   });
 
 </script>
@@ -24,8 +24,12 @@ $(document).ready(function(){
 
 echo html_entity_decode($code);
 echo $this->Form->input('response',array('id' => 'response'));
-
-
+/*echo $this->Form->submit('Submit', array(
+              'id' => 'submit',
+        'div' => false,
+        'class' => 'btn btn-primary'
+      ));
+*/
 ?>
 </div>
 </div>

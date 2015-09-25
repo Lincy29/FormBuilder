@@ -358,16 +358,25 @@ public function view() {
     }
    else
    {
-    //$this->request->data = $this->Form->find('first');
-    //$temp=$this->request->data['Form']['response'];
-    debug($this->request->data);
+     
     $code = $this->request->data=$this->Form->find('first',
                      array('conditions' => array('Form.id' => $id),'fields' => array('Form.code')));
     $this->set('code',$code['Form']['code']);
     
    }
 
+    if ($this->request->is('post')) {
+      $this->redirect(array('controller' => 'forms','action' => 'view_form'));
+      debug($this->request->data);
+    }
   }
+
+  public function form()
+{
+  
+}
+public function form1()
+{}
 
 }
 

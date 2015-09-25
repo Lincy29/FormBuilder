@@ -81,4 +81,14 @@ class InstitutionsController extends AppController {
 			$this->request->data = $this->Institution->find('first', $options);
 		}
 	}
+
+	public function list_institutions(){
+		$this->disableCache();
+		$institutions = $this->Institution->find('list');
+    $institutions = Set::map($institutions);
+    $this->set(array(
+            'institutions' => $institutions,
+            '_serialize' => array('institutions')
+        ));
+}
 }
