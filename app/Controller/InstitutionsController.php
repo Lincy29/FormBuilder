@@ -90,5 +90,9 @@ class InstitutionsController extends AppController {
             'institutions' => $institutions,
             '_serialize' => array('institutions')
         ));
+<<<<<<< HEAD
 }
+=======
+	}
+>>>>>>> dd116ef6e38e848938c72fcabf703974d954196a
 }

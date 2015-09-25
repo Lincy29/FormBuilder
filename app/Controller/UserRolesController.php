@@ -10,6 +10,10 @@ class UserRolesController extends AppController {
 
 public $components = array('Paginator');
 
+/***
+index functions for all roles, it displays all records with its details
+**/
+
 public function index_superadmin()
 {
   $this->loadModel('Setting');
@@ -24,6 +28,46 @@ public function index_superadmin()
     'conditions'=>['UserRole.role_id'=> Configure::read('superadmin')]);
   $this->set('superadmins', $this->Paginator->paginate());
 }
+
+public function index_admin() {
+  $this->loadModel('Setting');
+  $data = $this->Setting->find('first', array('recursive' => - 1));
+  $pagination_value = $data['Setting']['pagination_value'];
+  $this->Paginator->settings = array(
+    'limit' => $pagination_value,
+    'page' => 1,
+    'contain' => ['Staff','Institution','Department','Role'],
+    'conditions'=>['UserRole.role_id'=> Configure::read('admin')]);
+  $this->set('admins', $this->Paginator->paginate());
+}
+
+public function index_formcoord() {
+  $this->loadModel('Setting');
+  $data = $this->Setting->find('first', array('recursive' => - 1));
+  $pagination_value = $data['Setting']['pagination_value'];
+  $this->Paginator->settings = array(
+    'limit' => $pagination_value,
+    'page' => 1,
+    'contain' => ['Staff','Institution','Department','Role'],
+    'conditions'=>['UserRole.role_id'=> Configure::read('formcoordinator')]);
+  $this->set('formcoordinators', $this->Paginator->paginate());
+}
+
+public function index_formadmin() {
+  $this->loadModel('Setting');
+  $data = $this->Setting->find('first', array('recursive' => - 1));
+  $pagination_value = $data['Setting']['pagination_value'];
+  $this->Paginator->settings = array(
+    'limit' => $pagination_value,
+    'page' => 1,
+    'contain' => ['Staff','Institution','Department','Role'],
+    'conditions'=>['UserRole.role_id'=> Configure::read('formadmin')]);
+  $this->set('formadmins', $this->Paginator->paginate());
+}
+
+/***
+add functions for all roles, it adds new record
+**/
 
 public function add_superadmin() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0) {
@@ -43,89 +87,12 @@ public function add_superadmin() {
   }
   unset($this->request->data);  
   $institutions = $this->UserRole->Institution->find('list');
-  //debug($institutions);exit;
-
+ 
   $departments = [];
   $staffs = [];
   $this->set(compact('institutions', 'departments', 'staffs'));
  
 }
-
-public function view_superadmin($id = null) {
-  if (!$this->UserRole->exists($id)) {
-    throw new NotFoundException(__('Invalid id'));
-  }
-
-  $options = array(
-    'recursive' => - 1,
-    'contain' => ['Staff','Institution','Department','Role'],
-    'conditions' => array('UserRole.' . $this->UserRole->primaryKey => $id
-    )
-  );
-  $this->set('superadmin', $this->UserRole->find('first', $options));
-}
-
-public function deactivate_superadmin($id = null) {
-  if (!$this->UserRole->exists($id)) {
-    throw new NotFoundException(__('Invalid id'));
-  }
-
-  if ($this->request->is(array('post','put'))) {
-    $this->request->data['UserRole']['id'] = $id;
-    $this->request->data['UserRole']['recstatus'] = 0;
-    if ($this->UserRole->save($this->request->data, true, array('id','recstatus'))) {
-      $this->Session->setFlash(__('SuperAdmin has been deactivated.') , 'alert', array(
-        'class' => 'alert-success'));
-    } else {
-      $this->Session->setFlash(__('SuperAdmin cannot be deactivated. Please, try again.') , 'alert', array(
-        'class' => 'alert-success'));
-    }
-    return $this->redirect(array('controller' => 'user_roles','action' => 'index_superadmin'));
-  }
-}
-
-/**
-*
-* Admin part
-*
-**/
-
-public function index_admin() {
-  $this->loadModel('Setting');
-  $data = $this->Setting->find('first', array('recursive' => - 1));
-  $pagination_value = $data['Setting']['pagination_value'];
-  $this->Paginator->settings = array(
-    'limit' => $pagination_value,
-    'page' => 1,
-    'contain' => ['Staff','Institution','Department','Role'],
-    'conditions'=>['UserRole.role_id'=> Configure::read('admin')]);
-  $this->set('admins', $this->Paginator->paginate());
-}
-
-public function index_fcoord() {
-  $this->loadModel('Setting');
-  $data = $this->Setting->find('first', array('recursive' => - 1));
-  $pagination_value = $data['Setting']['pagination_value'];
-  $this->Paginator->settings = array(
-    'limit' => $pagination_value,
-    'page' => 1,
-    'contain' => ['Staff','Institution','Department','Role'],
-    'conditions'=>['UserRole.role_id'=> Configure::read('formcoordinator')]);
-  $this->set('formcoordinators', $this->Paginator->paginate());
-}
-
-public function index_fadmin() {
-  $this->loadModel('Setting');
-  $data = $this->Setting->find('first', array('recursive' => - 1));
-  $pagination_value = $data['Setting']['pagination_value'];
-  $this->Paginator->settings = array(
-    'limit' => $pagination_value,
-    'page' => 1,
-    'contain' => ['Staff','Institution','Department','Role'],
-    'conditions'=>['UserRole.role_id'=> Configure::read('formadmin')]);
-  $this->set('formadmins', $this->Paginator->paginate());
-}
-
 
 public function add_admin() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
@@ -151,7 +118,7 @@ public function add_admin() {
 }
 
 
-public function add_fcoord() {
+public function add_formcoord() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
       $this->UserRole->create();
       $staff_id = $this->request->data['UserRole']['staff_id']; 
@@ -161,7 +128,7 @@ public function add_fcoord() {
       if($this->UserRole->save($this->request->data)){
             $this->Session->setFlash(__('The  Form Coordinator has been saved.'), 'alert', array(
           'class' => 'alert-success'));
-            return $this->redirect(array('controller' => 'user_roles','action' => 'index_fcoord'));
+            return $this->redirect(array('controller' => 'user_roles','action' => 'index_formcoord'));
       } else  {
            $this->Session->setFlash(__('The  Form Coordinator could not be saved. Please, try again.'), 'alert', array(
             'class' => 'alert-success'));
@@ -174,7 +141,7 @@ public function add_fcoord() {
     $this->set(compact('institutions', 'departments', 'staffs','roles'));
 }
 
-public function add_fadmin() {
+public function add_formadmin() {
   if($this->request->is('post') && $this->request->data['UserRole']['staff_id'] != 0){
       $this->UserRole->create();
       $staff_id = $this->request->data['UserRole']['staff_id']; 
@@ -184,7 +151,7 @@ public function add_fadmin() {
       if($this->UserRole->save($this->request->data)){
             $this->Session->setFlash(__('The  Form Admin has been saved.'), 'alert', array(
           'class' => 'alert-success'));
-            return $this->redirect(array('controller' => 'user_roles','action' => 'index_fcoord'));
+            return $this->redirect(array('controller' => 'user_roles','action' => 'index_formadmin'));
       } else  {
            $this->Session->setFlash(__('The  Form Admin could not be saved. Please, try again.'), 'alert', array(
             'class' => 'alert-success'));
@@ -197,6 +164,22 @@ public function add_fadmin() {
     $this->set(compact('institutions', 'departments', 'staffs','roles'));
 }
 
+/***
+view functions for all roles, it displays individual record with its details
+**/
+public function view_superadmin($id = null) {
+  if (!$this->UserRole->exists($id)) {
+    throw new NotFoundException(__('Invalid id'));
+  }
+
+  $options = array(
+    'recursive' => - 1,
+    'contain' => ['Staff','Institution','Department','Role'],
+    'conditions' => array('UserRole.' . $this->UserRole->primaryKey => $id
+    )
+  );
+  $this->set('superadmin', $this->UserRole->find('first', $options));
+}
 
 
 public function view_admin($id = null)
@@ -214,7 +197,22 @@ public function view_admin($id = null)
   $this->set('admin', $this->UserRole->find('first', $options));
 }
 
-public function view_fcoord($id = null)
+public function view_formadmin($id = null)
+{
+  if (!$this->UserRole->exists($id)) {
+    throw new NotFoundException(__('Invalid id'));
+  }
+
+  $options = array(
+    'recursive' => - 1,
+    'contain' => ['Staff','Institution','Department','Role'],
+    'conditions' => array('UserRole.' . $this->UserRole->primaryKey => $id
+    )
+  );
+  $this->set('formadmin', $this->UserRole->find('first', $options));
+}
+
+public function view_formcoord($id = null)
 {
   if (!$this->UserRole->exists($id)) {
     throw new NotFoundException(__('Invalid id'));
@@ -228,8 +226,10 @@ public function view_fcoord($id = null)
   );
   $this->set('formcoordinator', $this->UserRole->find('first', $options));
 }
-
-public function deactivate_admin($id = null)
+/***
+it deactivates the records
+**/
+public function deactivate($id = null)
 {
   if (!$this->UserRole->exists($id)) {
 
@@ -248,51 +248,7 @@ public function deactivate_admin($id = null)
         'class' => 'alert-success'
       ));
     }
-    return $this->redirect(array('controller' => 'user_roles','action' => 'index_admin'));
-  }
-}
-
-public function deactivate_fadmin($id = null)
-{
-  if (!$this->UserRole->exists($id)) {
-      throw new NotFoundException(__('Invalid Role'));
-  }
-
-  if ($this->request->is(array('post','put'))) {
-    $this->request->data['UserRole']['id'] = $id;
-    $this->request->data['UserRole']['recstatus'] = 0;
-    if ($this->UserRole->save($this->request->data, true, array('id','recstatus'))) {
-      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    } else {
-      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    }
-    return $this->redirect(array('controller' => 'user_roles','action' => 'index_fadmin'));
-  }
-}
-
-public function deactivate_fcoord($id = null)
-{
-  if (!$this->UserRole->exists($id)) {
-      throw new NotFoundException(__('Invalid Role'));
-  }
-
-  if ($this->request->is(array('post','put'))) {
-    $this->request->data['UserRole']['id'] = $id;
-    $this->request->data['UserRole']['recstatus'] = 0;
-    if ($this->UserRole->save($this->request->data, true, array('id','recstatus'))) {
-      $this->Session->setFlash(__('It has been deactivated.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    } else {
-      $this->Session->setFlash(__('It cannot be deactivated. Please, try again.') , 'alert', array(
-        'class' => 'alert-success'
-      ));
-    }
-    return $this->redirect(array('controller' => 'user_roles','action' => 'index_fcoord'));
+    return $this->redirect($this->referer());
   }
 }
 

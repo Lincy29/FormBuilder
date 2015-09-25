@@ -1,10 +1,12 @@
 
+
 <?php echo $this->Html->css('custom'); ?>
 
  <script type="text/javascript">
      
  $(document).ready(function(){
-    $("#submit").on('click',function(){
+  
+     $("#submit").on('click',function(){
        var code = $("#render").val();
        console.log(code);
        $("#codetext").val(code);
@@ -28,7 +30,10 @@
   });
 
  </script>
+<<<<<<< HEAD
 =
+=======
+>>>>>>> dd116ef6e38e848938c72fcabf703974d954196a
 
 <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">

@@ -16,10 +16,10 @@
 		<td><?php echo h($category['Department']['name']); ?>&nbsp;</td>
 		<td><?php echo h($category['Category']['category_name']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit_category_fadmin', $category['Category']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit_category_formadmin', $category['Category']['id'])); ?>
 			<?php 
 			if($category['Category']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_category_fadmin', $category['Category']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $category['Category']['id'])); 
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate', $category['Category']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $category['Category']['id'])); 
 			}
 		?>
 		</td>

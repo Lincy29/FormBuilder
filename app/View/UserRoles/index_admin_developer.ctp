@@ -30,7 +30,7 @@
 			<?php echo $this->Html->link(__('', true), array('action' => 'view_admin', $admin['ManageRole']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
 			<?php 
 			if($admin['ManageRole']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_admin_developer', $admin['ManageRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $admin['ManageRole']['id'])); 
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate', $admin['ManageRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $admin['ManageRole']['id'])); 
 			}
 		?>
 		

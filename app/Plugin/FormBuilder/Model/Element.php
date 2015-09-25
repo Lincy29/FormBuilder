@@ -8,7 +8,7 @@ class Element extends FormBuilderAppModel {
 
  
 
-	public $displayField = 'name';
+  public $displayField = 'name';
   public $belongsTo = ['Form'];
 
 

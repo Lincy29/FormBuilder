@@ -1,7 +1,6 @@
 <?php 
 echo $this->Html->css('FormBuilder.ui-grid.css'); 
 echo $this->Html->script('FormBuilder.angular.js'); 
-
 echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js'); 
 
 ?> 
@@ -44,8 +43,6 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
     $scope.accordion.oneAtATime = true;
 
     $scope.addField = {};
-   // $scope.addField.types = fields;
-   // $scope.addField.new = $scope.addField.types[0].name; 
     $scope.addField.new = "TextBox";
     $scope.addField.lastAddedID = 0;
 
@@ -59,7 +56,7 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
             "field_title" : "New field - " + ($scope.addField.lastAddedID),
             "field_type" : $scope.addField.new,
             "field_value" : "",
-            "field_required" : false,
+            "field_required" : true,
             "field_disabled" : false
         };
 
@@ -70,7 +67,6 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
     </script>
 
 <div ng-app="MyApp" ng-controller="MyController"> 
-
 <div class="row"> 
 <div class="col-lg-8"> 
 
@@ -78,14 +74,13 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
     <fieldset> 
       <legend>Create Form</legend> 
         <div class="form-group"> 
-
           <h4><label for="FormProperties">Form Properties</label></h4> <br>
             <label for="FormName">Form Name</label> 
                 <input type = "text" class="form-control"><br>
           <h4><label for="FormFields">Form Fields</label></h4> <br>
  
           <div class="add-field">
-             <select class="form-control" ng-model="addField.new" ng-options="field.Name as field.Name for field in fields"></select>{{addField.new}}
+             <select class="form-control" ng-model="addField.new" ng-options="field.Name as field.Name for field in fields"></select>
              <button type="submit" class="btn btn-primary" ng-click="addNewField()">Add Field</button>
           </div>
 
@@ -148,7 +143,7 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
                         <div class="span2">Disabled:</div>
                         <div class="span4">
                             <label>
-                                <input type="radio" ng-value="true" ng-selected ng-model="field.field_disabled"/>
+                                <input type="radio" ng-value="true" ng-model="field.field_disabled"/>
                                 &nbsp; Yes
                             </label>
                             <label>
@@ -162,11 +157,8 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
         </accordion>
 
  </fieldset> 
-
   </form> 
 </div> 
 </div> 
 </div> 
-
-</div> 
-
+</div>     

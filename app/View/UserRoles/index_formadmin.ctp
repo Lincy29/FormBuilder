@@ -28,10 +28,10 @@
 			<?php echo h($formadmin['Role']['alias']); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('', true), array('action' => 'view_fadmin', $formadmin['UserRole']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
+			<?php echo $this->Html->link(__('', true), array('action' => 'view_formadmin', $formadmin['UserRole']['id']), array('class' => 'glyphicon glyphicon-eye-open')); ?>
 			<?php 
 			if($formadmin['UserRole']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_fadmin', $formadmin['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $formadmin['UserRole']['id'])); 
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate', $formadmin['UserRole']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $formadmin['UserRole']['id'])); 
 			}
 		?>
 		

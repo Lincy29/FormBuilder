@@ -1,9 +1,7 @@
 <div class="row">
-          <div class="col-lg-6">
-
+     <div class="col-lg-6">
 <div class="tickets form">
 	<?php echo $this->Html->script('manage_category');?>
-
 
 <div class="degrees form">
 
@@ -16,7 +14,6 @@
 	'class' => 'well form-horizontal'
 
 ));
-
 	$url = $this->Html->url(array(
 										'controller' => 'departments',
 										'plugin' => false,
@@ -48,8 +45,9 @@ echo $this->Form->input('department_id', array(
 				'class' => 'btn btn-primary'
 			)); ?>
 			<button type="reset" class="btn btn-default">Cancel</button>
-		</div>
+		
 		</fieldset>
+		</div>
 </div>
 
 

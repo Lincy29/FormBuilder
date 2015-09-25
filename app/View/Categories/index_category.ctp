@@ -23,7 +23,7 @@
 
 			<?php 
 			if($category['Category']['recstatus'] == 1){
-				echo $this->Form->postLink(__('', true), array('action' => 'deactivate_category', $category['Category']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $category['Category']['id'])); 
+				echo $this->Form->postLink(__('', true), array('action' => 'deactivate', $category['Category']['id']),array('class' => 'glyphicon glyphicon-remove', 'escape' => false), null, __('Are you sure you want to Deactivate # %s?', $category['Category']['id'])); 
 			}
 		?>
 		</td>
