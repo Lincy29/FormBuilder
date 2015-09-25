@@ -80,7 +80,7 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
           <h4><label for="FormFields">Form Fields</label></h4> <br>
  
           <div class="add-field">
-             <select class="form-control" ng-model="addField.new" ng-options="field.Name as field.Name for field in fields"></select>{{addField.new}}
+             <select class="form-control" ng-model="addField.new" ng-options="field.Name as field.Name for field in fields"></select>
              <button type="submit" class="btn btn-primary" ng-click="addNewField()">Add Field</button>
           </div>
 
