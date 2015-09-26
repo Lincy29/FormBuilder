@@ -1,5 +1,6 @@
 <?php 
 echo $this->Html->css('FormBuilder.ui-grid.css'); 
+echo $this->Html->css('FormBuilder.form.css'); 
 echo $this->Html->script('FormBuilder.angular.js'); 
 
 echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js'); 
@@ -83,12 +84,14 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
             <label for="FormName">Form Name</label> 
                 <input type = "text" class="form-control"><br>
           <h4><label for="FormFields">Form Fields</label></h4> <br>
- 
+            
           <div class="add-field">
-             <select class="form-control" ng-model="addField.new" ng-options="field.Name as field.Name for field in fields"></select>{{addField.new}}
+             <select class="form-control" ng-model="addField.new" ng-options="field.Name as field.Name for field in fields"></select>
+             <!--{{addField.new}}-->
+             <br>
              <button type="submit" class="btn btn-primary" ng-click="addNewField()">Add Field</button>
           </div>
-
+            <br>
         <p ng-show="form.form_fields.length == 0">No fields added yet.</p>
         <accordion close-others="accordion.oneAtATime">
             <accordion-group heading="{{field.field_title}}" ng-repeat="field in form.form_fields">
@@ -96,47 +99,36 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
                 <div class="accordion-edit">
                     
                     <div class="row">
-                        <div class="span2">Field ID: </div>
-                        <div class="span4">{{field.field_id}}</div>
+                        <div class="span2" id="field"><h4>Field ID: </h4></div>
+                        <div class="span4" id="field">{{field.field_id}}</div>
                     </div>
                     <div class="row">
-                        <div class="span2">Field Type:</div>
-                        <div class="span4">{{field.field_type}}</div>
+                        <div class="span2" id="field"><h4>Field Type:</h4></div>
+                        <div class="span4" id="field">{{field.field_type}}</div>
                     </div>
 
                     <div class="clear"></div> <hr>
 
                     <div class="row">
-                        <div class="span2">Field Title:</div>
-                        <div class="span4"><input type="text" ng-model="field.field_title" value="{{field.field_title}}"></div>
+                        <div class="span2" id="field"><h4>Field Title:</h4></div>
+                        <div class="span4" id="field"><input type="text" ng-model="field.field_title" value="{{field.field_title}}" class="form-control"></div>
                     </div>
                     <div class="row">
-                        <div class="span2">Field Default Value:</div>
-                        <div class="span4"><input type="text" ng-model="field.field_value" value="{{field.field_value}}"></div>
+                        <div class="span2" id="field"><h4>Field Default Value:</h4></div>
+                        <div class="span4" id="field"><input type="text" ng-model="field.field_value" value="{{field.field_value}}" class="form-control"></div>
                     </div>
-                   <!-- <div class="row" ng-show="showAddOptions(field)">
-                        <div class="span2">Field Options:</div>
-                        <div class="span6">
-                            <div ng-repeat="option in field.field_options">
-                                <input type="text" ng-model="option.option_title" value="{{option.option_title}}">
-                                <a class="btn btn-danger btn-mini right" type="button" ng-click="deleteOption(field, option)"><i class="icon-minus icon-white"></i></a>
-                                <span class="label label-inverse">Value: {{ option.option_value }}</span>
-                            </div>
-                            <button class="btn btn-primary btn-small" type="button" ng-click="addOption(field)"><i class="icon-plus icon-white"></i> Add Option</button>
-                        </div>
-                    </div> -->
 
                     <div class="clear"></div> <hr>
 
                     <div class="row">
-                        <div class="span2">Required:</div>
-                        <div class="span4">
+                        <div class="span2" id="field"><h4>Required:</h4></div>
+                        <div class="span4" id="field">
                             <label>
-                                <input type="radio" ng-value="true" ng-model="field.field_required"/>
+                                <input type="radio" ng-value="true" ng-model="field.field_required" id="field"/>
                                 &nbsp; Yes
                             </label>
                             <label>
-                                <input type="radio" ng-value="false" ng-model="field.field_required"/>
+                                <input type="radio" ng-value="false" ng-model="field.field_required" id="field"/>
                                 &nbsp; No
                             </label>
                         </div>
@@ -145,14 +137,14 @@ echo $this->Html->script('FormBuilder.ui-bootstrap-tpls-0.13.4.js');
                     <div class="clear"></div> <hr>
 
                     <div class="row">
-                        <div class="span2">Disabled:</div>
-                        <div class="span4">
+                        <div class="span2" id="field"><h4>Disabled:</h4></div>
+                        <div class="span4" id="field">
                             <label>
-                                <input type="radio" ng-value="true" ng-selected ng-model="field.field_disabled"/>
+                                <input type="radio" ng-value="true" ng-selected ng-model="field.field_disabled" id="field"/>
                                 &nbsp; Yes
                             </label>
                             <label>
-                                <input type="radio" ng-value="false" ng-model="field.field_disabled"/>
+                                <input type="radio" ng-value="false" ng-model="field.field_disabled" id="field" id="field"/>
                                 &nbsp; No
                             </label>
                         </div>
